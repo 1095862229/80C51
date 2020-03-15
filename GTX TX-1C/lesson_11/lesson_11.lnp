@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"shizhong.obj" 
+TO "lesson_11" 
+RAMSIZE(256) 

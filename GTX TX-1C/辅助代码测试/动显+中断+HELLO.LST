@@ -1,0 +1,187 @@
+C51 COMPILER V9.01   禵显__卸蟔HELLO                                                       04/24/2017 12:45:09 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE 禵显__卸蟔HELLO
+OBJECT MODULE PLACED IN 动显+中断+HELLO.OBJ
+COMPILER INVOKED BY: F:\Keil\C51\BIN\C51.EXE 动显+中断+HELLO.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg52.h>
+   2          #include <intrins.h> //包含有左右循环移位子函数的库
+   3          #define uchar unsigned char
+   4          #define uint unsigned int
+   5          sbit dula=P2^6;
+   6          sbit wela=P2^7;
+   7          uchar code table[]={   //显示数据编码
+   8          0x3f,0x06,0x5b,0x4f,
+   9          0x66,0x6d,0x7d,0x07,
+  10          0x7f,0x6f,0x77,0x7c,
+  11          0x39,0x5e,0x79,0x71,
+  12          0x76,0x79,0x38,0x3f,0};
+  13          uint shu;
+  14          uchar ge,shi,bai,tt0,tt1,flag,temp,flag1;
+  15          
+  16          
+  17          void timer0() interrupt 1
+  18          {
+  19   1              TH0=(65536-50000)/256;
+  20   1              TL0=(65536-50000)%256;
+  21   1              tt0++;
+  22   1              if(flag!=1)
+  23   1                      {
+  24   2                              if(tt0==10)
+  25   2                              {
+  26   3                                      tt0=1;
+  27   3                                      temp=_crol_(temp,1);
+  28   3                                      P1=temp;
+  29   3                              }
+  30   2                      }
+  31   1              else              //否则进行灯闪烁
+  32   1                      {
+  33   2                              if(tt0%4==0)  //小灯每200毫秒变化一次
+  34   2                                      P1=~P1;
+  35   2                              if(tt0==60)
+  36   2                              {
+  37   3                                      TR0=0;   //3秒后关闭定时器0，关闭灯，并置flag=1
+  38   3                                      P1=0xff;
+  39   3                                      flag1=1;
+  40   3                              }
+  41   2                      }       
+  42   1      
+  43   1      }
+  44          
+  45          void timer1() interrupt 3
+  46          {
+  47   1              TH1=(65536-50000)/256;
+  48   1              TL1=(65536-50000)%256;
+  49   1              tt1++;
+  50   1              if(tt1==2)
+  51   1                      {
+  52   2                              tt1=0;
+  53   2                              shu--;
+  54   2                              bai=shu/100;
+  55   2                              shi=shu%100/10;
+C51 COMPILER V9.01   禵显__卸蟔HELLO                                                       04/24/2017 12:45:09 PAGE 2   
+
+  56   2                              ge=shu%10;
+  57   2                              if(shu==398)    //当到398时把原来T0中的数清除，重新加裁初值让小灯闪烁
+  58   2                                      {
+  59   3                                              TR0=0;
+  60   3                                              TH0=(65536-50000)/256;
+  61   3                                              TL0=(65536-50000)%256;
+  62   3                                              TR0=1;
+  63   3                                              flag=1;
+  64   3                                              tt0=0;
+  65   3                                              P1=0xff;
+  66   3                                              TR1=0;
+  67   3                                      }       
+  68   2                      }       
+  69   1      }
+  70          
+  71          void delay(uchar z)
+  72          {
+  73   1              uchar x,y;
+  74   1              for(x=z;x>0;x--)
+  75   1                      for(y=110;y>0;y--);
+  76   1      }
+  77          
+  78          void init()
+  79          {
+  80   1              temp=0xfe;
+  81   1              shu=432;
+  82   1              bai=shu/100;
+  83   1              shi=shu%100/10;
+  84   1              ge=shu%10;
+  85   1              P1=temp;
+  86   1              TH1=(65536-50000)/256;  //定时器初始化
+  87   1              TL1=(65536-50000)%256;
+  88   1              TH0=(65536-50000)/256;
+  89   1              TL0=(65536-50000)%256;
+  90   1              EA=1;
+  91   1              TMOD=0x11;
+  92   1              ET0=1;
+  93   1              ET1=1;
+  94   1              TR1=1;
+  95   1              TR0=1;
+  96   1      }
+  97          
+  98          void display(uchar bai1,uchar shi1,uchar ge1,uchar bai,uchar shi,uchar ge)
+  99          {
+ 100   1              P0=table[bai1];                           //显示 7
+ 101   1              dula=1;
+ 102   1              dula=0;
+ 103   1              P0=0xfe;
+ 104   1              wela=1;
+ 105   1              wela=0;
+ 106   1              delay(1);
+ 107   1      
+ 108   1              P0=table[shi1];                            //显示 6
+ 109   1              dula=1;
+ 110   1              dula=0;
+ 111   1              P0=0xfd;
+ 112   1              wela=1;
+ 113   1              wela=0;
+ 114   1              delay(1);
+ 115   1      
+ 116   1              P0=table[ge1];                             //显示 5
+ 117   1              dula=1;
+C51 COMPILER V9.01   禵显__卸蟔HELLO                                                       04/24/2017 12:45:09 PAGE 3   
+
+ 118   1              dula=0;
+ 119   1              P0=0xfb;
+ 120   1              wela=1;
+ 121   1              wela=0;
+ 122   1              delay(1);
+ 123   1      
+ 124   1              P0=table[bai];                             //显示 bai
+ 125   1              dula=1;
+ 126   1              dula=0;
+ 127   1              P0=0xf7;
+ 128   1              wela=1;
+ 129   1              wela=0;
+ 130   1              delay(1);
+ 131   1      
+ 132   1              P0=table[shi];                             //显示 shi
+ 133   1              dula=1;
+ 134   1              dula=0;
+ 135   1              P0=0xef;
+ 136   1              wela=1;
+ 137   1              wela=0;
+ 138   1              delay(1);
+ 139   1      
+ 140   1              P0=table[ge];                              //显示 ge
+ 141   1              dula=1;
+ 142   1              dula=0;
+ 143   1              P0=0xdf;
+ 144   1              wela=1;
+ 145   1              wela=0;
+ 146   1              delay(1);
+ 147   1      }
+ 148          
+ 149          
+ 150          void main()
+ 151          {
+ 152   1              init();
+ 153   1              while(1)
+ 154   1              {
+ 155   2                      if(flag1!=1)   //如果flagi不再等于1则显示数据
+ 156   2                              display(7,6,5,bai,shi,ge);
+ 157   2                      else
+ 158   2                              display(16,17,18,18,19,20);       //否则显示hello
+ 159   2              }
+ 160   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    480    ----
+   CONSTANT SIZE    =     21    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     10       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

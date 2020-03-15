@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"数码显示.obj" 
+TO "数据转换" 
+RAMSIZE(256) 

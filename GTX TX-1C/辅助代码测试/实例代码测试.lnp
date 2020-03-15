@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"计数器.obj" 
+TO "实例代码测试" 
+RAMSIZE(256) 

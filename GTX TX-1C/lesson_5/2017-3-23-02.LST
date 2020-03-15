@@ -1,0 +1,72 @@
+C51 COMPILER V9.01   2017_3_23_02                                                          03/24/2017 11:11:59 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE 2017_3_23_02
+OBJECT MODULE PLACED IN 2017-3-23-02.OBJ
+COMPILER INVOKED BY: F:\Keil\C51\BIN\C51.EXE 2017-3-23-02.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg52.h>
+   2          sbit d1=P1^0;
+   3          sbit key1=P3^4;
+   4          sbit dula=P2^6;
+   5          sbit wela=P2^7;
+   6          unsigned char code table[]={
+   7          0x3f,0x06,0x5b,0x4f,
+   8          0x66,0x6d,0x7d,0x07,
+   9          0x7f,0x6f,0x77,0x7c,
+  10          0x39,0x5e,0x79,0x71};
+  11          unsigned char a=0,x,y,z;
+  12          void delay(unsigned char z);
+  13          void main()
+  14          {       
+  15   1              P3=0xff;
+  16   1              while(1)
+  17   1              {
+  18   2                      if(key1==0)
+  19   2                      {
+  20   3                              delay(10);
+  21   3                              if(key1==0)
+  22   3                              {
+  23   4                                      d1=0;
+  24   4                                  a++;
+  25   4                                      wela=1;
+  26   4                                      P0=0xfe;
+  27   4                                      wela=0;
+  28   4                              //      deply(5); 
+  29   4                                      dula=1;
+  30   4                                      P0=table[a];
+  31   4                                      dula=0;
+  32   4                                      if(a==16)
+  33   4                                          a=0;
+  34   4                                      while(!key1);
+  35   4                                      delay(10);
+  36   4                                      while(!key1);
+  37   4                              }
+  38   3                      }
+  39   2                      else d1=1;      
+  40   2              }
+  41   1      }
+  42          
+  43          void delay(unsigned char z)
+  44          {
+  45   1              for(x=z;x>0;x--)
+  46   1              for(y=110;y>0;y--);     
+  47   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     82    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4    ----
+C51 COMPILER V9.01   2017_3_23_02                                                          03/24/2017 11:11:59 PAGE 2   
+
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,209 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        03/17/2017  21:31:15  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+F:\KEIL\C51\BIN\BL51.EXE STARTUP.obj, 2017-3-17-01.obj TO 点亮发光二极管 RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  2017-3-17-01.obj (2017_3_17_01)
+  F:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  点亮发光二极管 (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0005H     UNIT         ?DT?2017_3_17_01
+            DATA    000DH     0002H     UNIT         _DATA_GROUP_
+            IDATA   000FH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     00C0H     UNIT         ?PR?SHUXUN?2017_3_17_01
+            CODE    00C3H     008CH     UNIT         ?C_C51STARTUP
+            CODE    014FH     002EH     UNIT         ?PR?YANSHI?2017_3_17_01
+            CODE    017DH     0029H     UNIT         ?PR?MAIN?2017_3_17_01
+            CODE    01A6H     0014H     UNIT         ?PR?ZUOYI?2017_3_17_01
+            CODE    01BAH     0009H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   点亮发光二极管 (?C_STARTUP)
+
+
+SEGMENT                           DATA_GROUP 
+  +--> CALLED SEGMENT           START    LENGTH
+-----------------------------------------------
+?C_C51STARTUP                   -----    -----
+  +--> ?PR?MAIN?2017_3_17_01
+  +--> ?C_INITSEG
+
+?PR?MAIN?2017_3_17_01           000DH    0002H
+  +--> ?PR?ZUOYI?2017_3_17_01
+  +--> ?PR?SHUXUN?2017_3_17_01
+
+?PR?ZUOYI?2017_3_17_01          -----    -----
+  +--> ?PR?YANSHI?2017_3_17_01
+
+?PR?SHUXUN?2017_3_17_01         -----    -----
+  +--> ?PR?YANSHI?2017_3_17_01
+
+
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/17/2017  21:31:15  PAGE 2
+
+
+SYMBOL TABLE OF MODULE:  点亮发光二极管 (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:00C3H         SEGMENT       ?C_C51STARTUP
+  I:000FH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:00C6H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:00C3H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:00C3H         LINE#         133
+  C:00C5H         LINE#         134
+  C:00C6H         LINE#         135
+  C:00C7H         LINE#         136
+  C:00C9H         LINE#         185
+  C:00CCH         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        2017_3_17_01
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  C:014FH         PUBLIC        yanshi
+  B:0090H.0       PUBLIC        d1
+  B:0090H.1       PUBLIC        d2
+  B:0090H.2       PUBLIC        d3
+  B:0090H.3       PUBLIC        d4
+  B:0090H.4       PUBLIC        d5
+  D:00B8H         PUBLIC        IP
+  B:0090H.5       PUBLIC        d6
+  B:0090H.6       PUBLIC        d7
+  B:0090H.7       PUBLIC        d8
+  C:017DH         PUBLIC        main
+  C:0003H         PUBLIC        shuxun
+  D:0098H         PUBLIC        SCON
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/17/2017  21:31:15  PAGE 3
+
+
+  D:0088H         PUBLIC        TCON
+  D:0008H         PUBLIC        temp
+  C:01A6H         PUBLIC        zuoyi
+  D:0009H         PUBLIC        a
+  D:000BH         PUBLIC        b
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          MAIN
+  -------         DO            
+  D:000DH         SYMBOL        i
+  -------         ENDDO         
+  C:017DH         LINE#         17
+  C:017DH         LINE#         18
+  C:017DH         LINE#         19
+  C:017DH         LINE#         20
+  C:017DH         LINE#         21
+  C:0183H         LINE#         22
+  C:0186H         LINE#         23
+  C:0193H         LINE#         24
+  C:0198H         LINE#         25
+  C:019EH         LINE#         26
+  C:01A1H         LINE#         27
+  C:01A4H         LINE#         32
+  -------         ENDPROC       MAIN
+  -------         PROC          YANSHI
+  C:014FH         LINE#         35
+  C:014FH         LINE#         36
+  C:014FH         LINE#         37
+  C:0161H         LINE#         38
+  C:0170H         LINE#         39
+  C:0176H         LINE#         40
+  C:017CH         LINE#         41
+  -------         ENDPROC       YANSHI
+  -------         PROC          ZUOYI
+  C:01A6H         LINE#         44
+  C:01A6H         LINE#         45
+  C:01A6H         LINE#         47
+  C:01A9H         LINE#         48
+  C:01ACH         LINE#         49
+  C:01B9H         LINE#         51
+  -------         ENDPROC       ZUOYI
+  -------         PROC          SHUXUN
+  C:0003H         LINE#         53
+  C:0003H         LINE#         54
+  C:0003H         LINE#         55
+  C:0005H         LINE#         56
+  C:0008H         LINE#         57
+  C:000AH         LINE#         58
+  C:000DH         LINE#         59
+  C:000FH         LINE#         60
+  C:0011H         LINE#         61
+  C:0014H         LINE#         62
+  C:0018H         LINE#         63
+  C:001BH         LINE#         64
+  C:0021H         LINE#         65
+  C:0024H         LINE#         66
+  C:002AH         LINE#         67
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/17/2017  21:31:15  PAGE 4
+
+
+  C:002DH         LINE#         68
+  C:0035H         LINE#         69
+  C:0038H         LINE#         70
+  C:0040H         LINE#         71
+  C:0043H         LINE#         72
+  C:004DH         LINE#         73
+  C:0050H         LINE#         74
+  C:005AH         LINE#         75
+  C:005DH         LINE#         76
+  C:0069H         LINE#         77
+  C:006CH         LINE#         78
+  C:0078H         LINE#         79
+  C:007BH         LINE#         80
+  C:0089H         LINE#         81
+  C:008CH         LINE#         82
+  C:009AH         LINE#         83
+  C:009DH         LINE#         84
+  C:00ADH         LINE#         85
+  C:00B0H         LINE#         86
+  C:00C0H         LINE#         87
+  -------         ENDPROC       SHUXUN
+  -------         ENDMOD        2017_3_17_01
+
+Program Size: data=16.0 xdata=0 code=451
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

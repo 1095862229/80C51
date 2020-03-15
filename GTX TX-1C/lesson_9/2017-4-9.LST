@@ -1,0 +1,138 @@
+C51 COMPILER V9.01   2017_4_9                                                              04/09/2017 14:21:53 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE 2017_4_9
+OBJECT MODULE PLACED IN 2017-4-9.OBJ
+COMPILER INVOKED BY: F:\Keil\C51\BIN\C51.EXE 2017-4-9.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg52.h>
+   2          #define uchar unsigned char
+   3          sbit sda=P2^0;
+   4          sbit scl=P2^1;
+   5          void delay()
+   6          {;;}
+   7          void start()            //开始
+   8          {
+   9   1              sda=1;
+  10   1              delay();
+  11   1              scl=1;
+  12   1              delay();
+  13   1              sda=0;
+  14   1              delay();
+  15   1              
+  16   1      }
+  17          void stop()                                      //停止
+  18          {
+  19   1              sda=0;
+  20   1              delay();
+  21   1              scl=1;
+  22   1              delay();
+  23   1              sda=1;
+  24   1      }
+  25          void respons()               //应答
+  26          {
+  27   1              uchar i;
+  28   1              scl=1;
+  29   1              delay();
+  30   1              while((sda==1)&&(i<250)) i++;
+  31   1              scl=0;
+  32   1              delay();
+  33   1      }
+  34          void init()
+  35          {
+  36   1              sda=1;
+  37   1              scl=1;
+  38   1      
+  39   1      }
+  40          void write_byte(uchar date)     //写入一个字节
+  41          {
+  42   1              uchar i,temp;
+  43   1              temp=date;
+  44   1              scl=0;
+  45   1              delay();
+  46   1              for(i=0;i<8;i++)
+  47   1              {
+  48   2                      temp=temp<<1;
+  49   2                      sda=CY;
+  50   2                      delay();
+  51   2                      scl=1;
+  52   2                      delay();
+  53   2                      scl=0;
+  54   2                      delay();
+  55   2              }
+C51 COMPILER V9.01   2017_4_9                                                              04/09/2017 14:21:53 PAGE 2   
+
+  56   1              sda=1;
+  57   1              delay();
+  58   1      }
+  59          uchar read_byte()
+  60          {
+  61   1              uchar i,j,k;
+  62   1              scl=0;
+  63   1              delay();
+  64   1              sda=1;
+  65   1              delay();
+  66   1              for(i=0;i<8;i++)
+  67   1              {
+  68   2                      scl=1;
+  69   2                      delay();        
+  70   2                      j=sda;
+  71   2                      k=(k<<1)|j;     
+  72   2                      scl=0;
+  73   2                      delay();                        
+  74   2              }
+  75   1              return k;
+  76   1      }
+  77          
+  78          void delay1(uchar x)
+  79          {
+  80   1              uchar a,b;
+  81   1              for(a=x;a>0;a--)
+  82   1               for(b=100;b>0;b--);
+  83   1      }
+  84          
+  85          
+  86          void main()
+  87          {
+  88   1              init();                            //初始化
+  89   1              start();                           //起始信号
+  90   1              write_byte(0xa0);          //器件地址
+  91   1              respons();                         //应答
+  92   1              write_byte(3);             //器件内部地址
+  93   1              respons();                         //应答
+  94   1              start();                           //
+  95   1              write_byte(0x55);          //
+  96   1              respons();                         //
+  97   1              stop();
+  98   1      
+  99   1      
+ 100   1              delay1(100);
+ 101   1              start();                                   //
+ 102   1              write_byte(0xa0);          //
+ 103   1              respons();                         //
+ 104   1              write_byte(3);
+ 105   1              respons();
+ 106   1              start();
+ 107   1              write_byte(0xa1);          //读
+ 108   1              P1=read_byte();
+ 109   1              stop();
+ 110   1              while(1);               
+ 111   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    204    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+C51 COMPILER V9.01   2017_4_9                                                              04/09/2017 14:21:53 PAGE 3   
+
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

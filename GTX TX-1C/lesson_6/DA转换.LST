@@ -1,0 +1,584 @@
+C51 COMPILER V9.01   DA转换                                                                04/03/2017 19:12:09 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE DA转换
+OBJECT MODULE PLACED IN DA转换.OBJ
+COMPILER INVOKED BY: F:\Keil\C51\BIN\C51.EXE DA转换.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg52.h>
+   2          sbit csda=P3^2;
+   3          sbit wr=P3^6;
+   4          void liang();
+   5          void an();
+   6          void delay()
+   7          {
+   8   1              unsigned char a,b;
+   9   1              for(a=0;a<46;a++)
+  10   1                      for(b=0;b<110;b++);
+  11   1      }
+  12          void main()
+  13          {
+  14   1              csda=0;
+  15   1              wr=0;
+  16   1      
+  17   1              while(1)
+  18   1              {
+  19   2                      liang();
+  20   2                      an();
+  21   2              }       
+  22   1      }
+  23          
+  24          void liang()
+  25          {
+  26   1              P0=0;           delay();
+  27   1              P0=0x01;        delay();
+  28   1              P0=0x02;        delay();
+  29   1              P0=0x03;        delay();
+  30   1              P0=0x04;        delay();
+  31   1              P0=0x05;        delay();
+  32   1              P0=0x06;        delay();
+  33   1              P0=0x07;        delay();
+  34   1              P0=0x08;        delay();
+  35   1              P0=0x09;        delay();
+  36   1              P0=0x0a;        delay();
+  37   1              P0=0x0b;        delay();
+  38   1              P0=0x0c;        delay();        
+  39   1              P0=0x0d;        delay();
+  40   1              P0=0x0e;        delay();
+  41   1              P0=0x0f;        delay();
+  42   1              P0=0x10;        delay();
+  43   1              P0=0x11;        delay();
+  44   1              P0=0x12;        delay();
+  45   1              P0=0x13;        delay();
+  46   1              P0=0x14;        delay();
+  47   1              P0=0x15;        delay();
+  48   1              P0=0x16;        delay();
+  49   1              P0=0x17;        delay();
+  50   1              P0=0x18;        delay();
+  51   1              P0=0x19;        delay();
+  52   1              P0=0x1a;        delay();
+  53   1              P0=0x1b;        delay();
+  54   1              P0=0x1c;        delay();        
+  55   1              P0=0x1d;        delay();
+C51 COMPILER V9.01   DA转换                                                                04/03/2017 19:12:09 PAGE 2   
+
+  56   1              P0=0x1e;        delay();
+  57   1              P0=0x1f;        delay();
+  58   1              P0=0x20;        delay();
+  59   1              P0=0x21;        delay();
+  60   1              P0=0x22;        delay();
+  61   1              P0=0x23;        delay();
+  62   1              P0=0x24;        delay();
+  63   1              P0=0x25;        delay();
+  64   1              P0=0x26;        delay();
+  65   1              P0=0x27;        delay();
+  66   1              P0=0x28;        delay();
+  67   1              P0=0x29;        delay();
+  68   1              P0=0x2a;        delay();
+  69   1              P0=0x2b;        delay();
+  70   1              P0=0x2c;        delay();        
+  71   1              P0=0x2d;        delay();
+  72   1              P0=0x2e;        delay();
+  73   1              P0=0x2f;        delay();
+  74   1              P0=0x30;        delay();
+  75   1              P0=0x31;        delay();
+  76   1              P0=0x32;        delay();
+  77   1              P0=0x33;        delay();
+  78   1              P0=0x34;        delay();
+  79   1              P0=0x35;        delay();
+  80   1              P0=0x36;        delay();
+  81   1              P0=0x37;        delay();
+  82   1              P0=0x38;        delay();
+  83   1              P0=0x39;        delay();
+  84   1              P0=0x3a;        delay();
+  85   1              P0=0x3b;        delay();
+  86   1              P0=0x3c;        delay();        
+  87   1              P0=0x3d;        delay();
+  88   1              P0=0x3e;        delay();
+  89   1              P0=0x3f;        delay();
+  90   1              P0=0x40;        delay();
+  91   1              P0=0x41;        delay();
+  92   1              P0=0x42;        delay();
+  93   1              P0=0x43;        delay();
+  94   1              P0=0x44;        delay();
+  95   1              P0=0x45;        delay();
+  96   1              P0=0x46;        delay();
+  97   1              P0=0x47;        delay();
+  98   1              P0=0x48;        delay();
+  99   1              P0=0x49;        delay();
+ 100   1              P0=0x4a;        delay();
+ 101   1              P0=0x4b;        delay();
+ 102   1              P0=0x4c;        delay();        
+ 103   1              P0=0x4d;        delay();
+ 104   1              P0=0x4e;        delay();
+ 105   1              P0=0x4f;        delay();
+ 106   1              P0=0x50;        delay();
+ 107   1              P0=0x51;        delay();
+ 108   1              P0=0x52;        delay();
+ 109   1              P0=0x53;        delay();
+ 110   1              P0=0x54;        delay();
+ 111   1              P0=0x55;        delay();
+ 112   1              P0=0x56;        delay();
+ 113   1              P0=0x57;        delay();
+ 114   1              P0=0x58;        delay();
+ 115   1              P0=0x59;        delay();
+ 116   1              P0=0x5a;        delay();
+ 117   1              P0=0x5b;        delay();
+C51 COMPILER V9.01   DA转换                                                                04/03/2017 19:12:09 PAGE 3   
+
+ 118   1              P0=0x5c;        delay();        
+ 119   1              P0=0x5d;        delay();
+ 120   1              P0=0x5e;        delay();
+ 121   1              P0=0x5f;        delay();
+ 122   1              P0=0x6f;        delay();
+ 123   1              P0=0x61;        delay();
+ 124   1              P0=0x62;        delay();
+ 125   1              P0=0x63;        delay();
+ 126   1              P0=0x64;        delay();
+ 127   1              P0=0x65;        delay();
+ 128   1              P0=0x66;        delay();
+ 129   1              P0=0x67;        delay();
+ 130   1              P0=0x68;        delay();
+ 131   1              P0=0x69;        delay();
+ 132   1              P0=0x6a;        delay();
+ 133   1              P0=0x6b;        delay();
+ 134   1              P0=0x6c;        delay();        
+ 135   1              P0=0x6d;        delay();
+ 136   1              P0=0x6e;        delay();
+ 137   1              P0=0x6f;        delay();
+ 138   1              P0=0x70;        delay();
+ 139   1              P0=0x71;        delay();
+ 140   1              P0=0x72;        delay();
+ 141   1              P0=0x73;        delay();
+ 142   1              P0=0x74;        delay();
+ 143   1              P0=0x75;        delay();
+ 144   1              P0=0x76;        delay();
+ 145   1              P0=0x77;        delay();
+ 146   1              P0=0x78;        delay();
+ 147   1              P0=0x79;        delay();
+ 148   1              P0=0x7a;        delay();
+ 149   1              P0=0x7b;        delay();
+ 150   1              P0=0x7c;        delay();        
+ 151   1              P0=0x7d;        delay();
+ 152   1              P0=0x7e;        delay();
+ 153   1              P0=0x7f;        delay();
+ 154   1              P0=0x80;        delay();
+ 155   1              P0=0x81;        delay();
+ 156   1              P0=0x82;        delay();
+ 157   1              P0=0x83;        delay();
+ 158   1              P0=0x84;        delay();
+ 159   1              P0=0x85;        delay();
+ 160   1              P0=0x86;        delay();
+ 161   1              P0=0x87;        delay();
+ 162   1              P0=0x88;        delay();
+ 163   1              P0=0x89;        delay();
+ 164   1              P0=0x8a;        delay();
+ 165   1              P0=0x8b;        delay();
+ 166   1              P0=0x8c;        delay();        
+ 167   1              P0=0x8d;        delay();
+ 168   1              P0=0x8e;        delay();
+ 169   1              P0=0x8f;        delay();
+ 170   1              P0=0x90;        delay();
+ 171   1              P0=0x91;        delay();
+ 172   1              P0=0x92;        delay();
+ 173   1              P0=0x93;        delay();
+ 174   1              P0=0x94;        delay();
+ 175   1              P0=0x95;        delay();
+ 176   1              P0=0x96;        delay();
+ 177   1              P0=0x97;        delay();
+ 178   1              P0=0x98;        delay();
+ 179   1              P0=0x99;        delay();
+C51 COMPILER V9.01   DA转换                                                                04/03/2017 19:12:09 PAGE 4   
+
+ 180   1              P0=0x9a;        delay();
+ 181   1              P0=0x9b;        delay();
+ 182   1              P0=0x9c;        delay();        
+ 183   1              P0=0x9d;        delay();
+ 184   1              P0=0x9e;        delay();
+ 185   1              P0=0x9f;        delay();
+ 186   1              P0=0xa0;        delay();
+ 187   1              P0=0xa1;        delay();
+ 188   1              P0=0xa2;        delay();
+ 189   1              P0=0xa3;        delay();
+ 190   1              P0=0xa4;        delay();
+ 191   1              P0=0xa5;        delay();
+ 192   1              P0=0xa6;        delay();
+ 193   1              P0=0xa7;        delay();
+ 194   1              P0=0xa8;        delay();
+ 195   1              P0=0xa9;        delay();
+ 196   1              P0=0xaa;        delay();
+ 197   1              P0=0xab;        delay();
+ 198   1              P0=0xac;        delay();        
+ 199   1              P0=0xad;        delay();
+ 200   1              P0=0xae;        delay();
+ 201   1              P0=0xaf;        delay();
+ 202   1              P0=0xbf;        delay();
+ 203   1              P0=0xb1;        delay();
+ 204   1              P0=0xb2;        delay();
+ 205   1              P0=0xb3;        delay();
+ 206   1              P0=0xb4;        delay();
+ 207   1              P0=0xb5;        delay();
+ 208   1              P0=0xb6;        delay();
+ 209   1              P0=0xb7;        delay();
+ 210   1              P0=0xb8;        delay();
+ 211   1              P0=0xb9;        delay();
+ 212   1              P0=0xba;        delay();
+ 213   1              P0=0xbb;        delay();
+ 214   1              P0=0xbc;        delay();        
+ 215   1              P0=0xbd;        delay();
+ 216   1              P0=0xbe;        delay();
+ 217   1              P0=0xbf;        delay();        
+ 218   1              P0=0xcf;        delay();
+ 219   1              P0=0xc1;        delay();
+ 220   1              P0=0xc2;        delay();
+ 221   1              P0=0xc3;        delay();
+ 222   1              P0=0xc4;        delay();
+ 223   1              P0=0xc5;        delay();
+ 224   1              P0=0xc6;        delay();
+ 225   1              P0=0xc7;        delay();
+ 226   1              P0=0xc8;        delay();
+ 227   1              P0=0xc9;        delay();
+ 228   1              P0=0xca;        delay();
+ 229   1              P0=0xcb;        delay();
+ 230   1              P0=0xcc;        delay();        
+ 231   1              P0=0xcd;        delay();
+ 232   1              P0=0xce;        delay();
+ 233   1              P0=0xcf;        delay();        
+ 234   1              P0=0xdf;        delay();
+ 235   1              P0=0xd1;        delay();
+ 236   1              P0=0xd2;        delay();
+ 237   1              P0=0xd3;        delay();
+ 238   1              P0=0xd4;        delay();
+ 239   1              P0=0xd5;        delay();
+ 240   1              P0=0xd6;        delay();
+ 241   1              P0=0xd7;        delay();
+C51 COMPILER V9.01   DA转换                                                                04/03/2017 19:12:09 PAGE 5   
+
+ 242   1              P0=0xd8;        delay();
+ 243   1              P0=0xd9;        delay();
+ 244   1              P0=0xda;        delay();
+ 245   1              P0=0xdb;        delay();
+ 246   1              P0=0xdc;        delay();        
+ 247   1              P0=0xdd;        delay();
+ 248   1              P0=0xde;        delay();
+ 249   1              P0=0xdf;        delay();
+ 250   1              P0=0xef;        delay();
+ 251   1              P0=0xe1;        delay();
+ 252   1              P0=0xe2;        delay();
+ 253   1              P0=0xe3;        delay();
+ 254   1              P0=0xe4;        delay();
+ 255   1              P0=0xe5;        delay();
+ 256   1              P0=0xe6;        delay();
+ 257   1              P0=0xe7;        delay();
+ 258   1              P0=0xe8;        delay();
+ 259   1              P0=0xe9;        delay();
+ 260   1              P0=0xea;        delay();
+ 261   1              P0=0xeb;        delay();
+ 262   1              P0=0xec;        delay();        
+ 263   1              P0=0xed;        delay();
+ 264   1              P0=0xee;        delay();
+ 265   1              P0=0xef;        delay();
+ 266   1              P0=0xff;        delay();
+ 267   1              P0=0xf1;        delay();
+ 268   1              P0=0xf2;        delay();
+ 269   1              P0=0xf3;        delay();
+ 270   1              P0=0xf4;        delay();
+ 271   1              P0=0xf5;        delay();
+ 272   1              P0=0xf6;        delay();
+ 273   1              P0=0xf7;        delay();
+ 274   1              P0=0xf8;        delay();
+ 275   1              P0=0xf9;        delay();
+ 276   1              P0=0xfa;        delay();
+ 277   1              P0=0xfb;        delay();
+ 278   1              P0=0xfc;        delay();        
+ 279   1              P0=0xfd;        delay();
+ 280   1              P0=0xfe;        delay();
+ 281   1              P0=0xff;        delay();
+ 282   1      }
+ 283          
+ 284          void an()
+ 285          {
+ 286   1              P0=0xff;        delay();
+ 287   1              P0=0xfe;        delay();
+ 288   1              P0=0xfd;        delay();
+ 289   1              P0=0xfc;        delay();
+ 290   1              P0=0xfb;        delay();
+ 291   1              P0=0xfa;        delay();
+ 292   1              P0=0xf9;        delay();
+ 293   1              P0=0xf8;        delay();
+ 294   1              P0=0xf7;        delay();
+ 295   1              P0=0xf6;        delay();
+ 296   1              P0=0xf5;        delay();
+ 297   1              P0=0xf4;        delay();        
+ 298   1              P0=0xf3;        delay();
+ 299   1              P0=0xf2;        delay();
+ 300   1              P0=0xf1;        delay();
+ 301   1              P0=0xf0;    delay();
+ 302   1              P0=0xef;        delay();
+ 303   1              P0=0xee;        delay();
+C51 COMPILER V9.01   DA转换                                                                04/03/2017 19:12:09 PAGE 6   
+
+ 304   1              P0=0xed;        delay();
+ 305   1              P0=0xec;        delay();
+ 306   1              P0=0xeb;        delay();
+ 307   1              P0=0xea;        delay();
+ 308   1              P0=0xe9;        delay();
+ 309   1              P0=0xe8;        delay();
+ 310   1              P0=0xe7;        delay();
+ 311   1              P0=0xe6;        delay();
+ 312   1              P0=0xe5;        delay();
+ 313   1              P0=0xe4;        delay();        
+ 314   1              P0=0xe3;        delay();
+ 315   1              P0=0xe2;        delay();
+ 316   1              P0=0xe1;        delay();
+ 317   1              P0=0xe0;    delay();
+ 318   1              P0=0xdf;        delay();
+ 319   1              P0=0xde;        delay();
+ 320   1              P0=0xdd;        delay();
+ 321   1              P0=0xdc;        delay();
+ 322   1              P0=0xdb;        delay();
+ 323   1              P0=0xda;        delay();
+ 324   1              P0=0xd9;        delay();
+ 325   1              P0=0xd8;        delay();
+ 326   1              P0=0xd7;        delay();
+ 327   1              P0=0xd6;        delay();
+ 328   1              P0=0xd5;        delay();
+ 329   1              P0=0xd4;        delay();        
+ 330   1              P0=0xd3;        delay();
+ 331   1              P0=0xd2;        delay();
+ 332   1              P0=0xd1;        delay();
+ 333   1              P0=0xd0;    delay();
+ 334   1              P0=0xcf;        delay();
+ 335   1              P0=0xce;        delay();
+ 336   1              P0=0xcd;        delay();
+ 337   1              P0=0xcc;        delay();
+ 338   1              P0=0xcb;        delay();
+ 339   1              P0=0xca;        delay();
+ 340   1              P0=0xc9;        delay();
+ 341   1              P0=0xc8;        delay();
+ 342   1              P0=0xc7;        delay();
+ 343   1              P0=0xc6;        delay();
+ 344   1              P0=0xc5;        delay();
+ 345   1              P0=0xc4;        delay();        
+ 346   1              P0=0xc3;        delay();
+ 347   1              P0=0xc2;        delay();
+ 348   1              P0=0xc1;        delay();
+ 349   1              P0=0xc0;    delay();
+ 350   1              P0=0xbf;        delay();
+ 351   1              P0=0xbe;        delay();
+ 352   1              P0=0xbd;        delay();
+ 353   1              P0=0xbc;        delay();
+ 354   1              P0=0xbb;        delay();
+ 355   1              P0=0xba;        delay();
+ 356   1              P0=0xb9;        delay();
+ 357   1              P0=0xb8;        delay();
+ 358   1              P0=0xb7;        delay();
+ 359   1              P0=0xb6;        delay();
+ 360   1              P0=0xb5;        delay();
+ 361   1              P0=0xb4;        delay();        
+ 362   1              P0=0xb3;        delay();
+ 363   1              P0=0xb2;        delay();
+ 364   1              P0=0xb1;        delay();
+ 365   1              P0=0xb0;    delay();
+C51 COMPILER V9.01   DA转换                                                                04/03/2017 19:12:09 PAGE 7   
+
+ 366   1              P0=0xaf;        delay();
+ 367   1              P0=0xae;        delay();
+ 368   1              P0=0xad;        delay();
+ 369   1              P0=0xac;        delay();
+ 370   1              P0=0xab;        delay();
+ 371   1              P0=0xaa;        delay();
+ 372   1              P0=0xa9;        delay();
+ 373   1              P0=0xa8;        delay();
+ 374   1              P0=0xa7;        delay();
+ 375   1              P0=0xa6;        delay();
+ 376   1              P0=0xa5;        delay();
+ 377   1              P0=0xa4;        delay();        
+ 378   1              P0=0xa3;        delay();
+ 379   1              P0=0xa2;        delay();
+ 380   1              P0=0xa1;        delay();
+ 381   1              P0=0xa0;    delay();
+ 382   1              P0=0x9f;        delay();
+ 383   1              P0=0x9e;        delay();
+ 384   1              P0=0x9d;        delay();
+ 385   1              P0=0x9c;        delay();
+ 386   1              P0=0x9b;        delay();
+ 387   1              P0=0x9a;        delay();
+ 388   1              P0=0x99;        delay();
+ 389   1              P0=0x98;        delay();
+ 390   1              P0=0x97;        delay();
+ 391   1              P0=0x96;        delay();
+ 392   1              P0=0x95;        delay();
+ 393   1              P0=0x94;        delay();        
+ 394   1              P0=0x93;        delay();
+ 395   1              P0=0x92;        delay();
+ 396   1              P0=0x91;        delay();
+ 397   1              P0=0x90;    delay();
+ 398   1              P0=0x8f;        delay();
+ 399   1              P0=0x8e;        delay();
+ 400   1              P0=0x8d;        delay();
+ 401   1              P0=0x8c;        delay();
+ 402   1              P0=0x8b;        delay();
+ 403   1              P0=0x8a;        delay();
+ 404   1              P0=0x89;        delay();
+ 405   1              P0=0x88;        delay();
+ 406   1              P0=0x87;        delay();
+ 407   1              P0=0x86;        delay();
+ 408   1              P0=0x85;        delay();
+ 409   1              P0=0x84;        delay();        
+ 410   1              P0=0x83;        delay();
+ 411   1              P0=0x82;        delay();
+ 412   1              P0=0x81;        delay();
+ 413   1              P0=0x80;    delay();
+ 414   1              P0=0x7f;        delay();
+ 415   1              P0=0x7e;        delay();
+ 416   1              P0=0x7d;        delay();
+ 417   1              P0=0x7c;        delay();
+ 418   1              P0=0x7b;        delay();
+ 419   1              P0=0x7a;        delay();
+ 420   1              P0=0x79;        delay();
+ 421   1              P0=0x78;        delay();
+ 422   1              P0=0x77;        delay();
+ 423   1              P0=0x76;        delay();
+ 424   1              P0=0x75;        delay();
+ 425   1              P0=0x74;        delay();        
+ 426   1              P0=0x73;        delay();
+ 427   1              P0=0x72;        delay();
+C51 COMPILER V9.01   DA转换                                                                04/03/2017 19:12:09 PAGE 8   
+
+ 428   1              P0=0x71;        delay();
+ 429   1              P0=0x70;    delay();
+ 430   1              P0=0x6f;        delay();
+ 431   1              P0=0x6e;        delay();
+ 432   1              P0=0x6d;        delay();
+ 433   1              P0=0x6c;        delay();
+ 434   1              P0=0x6b;        delay();
+ 435   1              P0=0x6a;        delay();
+ 436   1              P0=0x69;        delay();
+ 437   1              P0=0x68;        delay();
+ 438   1              P0=0x67;        delay();
+ 439   1              P0=0x66;        delay();
+ 440   1              P0=0x65;        delay();
+ 441   1              P0=0x64;        delay();        
+ 442   1              P0=0x63;        delay();
+ 443   1              P0=0x62;        delay();
+ 444   1              P0=0x61;        delay();
+ 445   1              P0=0x60;    delay();
+ 446   1              P0=0x5f;        delay();
+ 447   1              P0=0x5e;        delay();
+ 448   1              P0=0x5d;        delay();
+ 449   1              P0=0x5c;        delay();
+ 450   1              P0=0x5b;        delay();
+ 451   1              P0=0x5a;        delay();
+ 452   1              P0=0x59;        delay();
+ 453   1              P0=0x58;        delay();
+ 454   1              P0=0x57;        delay();
+ 455   1              P0=0x56;        delay();
+ 456   1              P0=0x55;        delay();
+ 457   1              P0=0x54;        delay();        
+ 458   1              P0=0x53;        delay();
+ 459   1              P0=0x52;        delay();
+ 460   1              P0=0x51;        delay();
+ 461   1              P0=0x50;    delay();
+ 462   1              P0=0x4f;        delay();
+ 463   1              P0=0x4e;        delay();
+ 464   1              P0=0x4d;        delay();
+ 465   1              P0=0x4c;        delay();
+ 466   1              P0=0x4b;        delay();
+ 467   1              P0=0x4a;        delay();
+ 468   1              P0=0x49;        delay();
+ 469   1              P0=0x48;        delay();
+ 470   1              P0=0x47;        delay();
+ 471   1              P0=0x46;        delay();
+ 472   1              P0=0x45;        delay();
+ 473   1              P0=0x44;        delay();        
+ 474   1              P0=0x43;        delay();
+ 475   1              P0=0x42;        delay();
+ 476   1              P0=0x41;        delay();
+ 477   1              P0=0x40;    delay();
+ 478   1              P0=0x3f;        delay();
+ 479   1              P0=0x3e;        delay();
+ 480   1              P0=0x3d;        delay();
+ 481   1              P0=0x3c;        delay();
+ 482   1              P0=0x3b;        delay();
+ 483   1              P0=0x3a;        delay();
+ 484   1              P0=0x39;        delay();
+ 485   1              P0=0x38;        delay();
+ 486   1              P0=0x37;        delay();
+ 487   1              P0=0x36;        delay();
+ 488   1              P0=0x35;        delay();
+ 489   1              P0=0x34;        delay();        
+C51 COMPILER V9.01   DA转换                                                                04/03/2017 19:12:09 PAGE 9   
+
+ 490   1              P0=0x33;        delay();
+ 491   1              P0=0x32;        delay();
+ 492   1              P0=0x31;        delay();
+ 493   1              P0=0x30;    delay();
+ 494   1              P0=0x2f;        delay();
+ 495   1              P0=0x2e;        delay();
+ 496   1              P0=0x2d;        delay();
+ 497   1              P0=0x2c;        delay();
+ 498   1              P0=0x2b;        delay();
+ 499   1              P0=0x2a;        delay();
+ 500   1              P0=0x29;        delay();
+ 501   1              P0=0x28;        delay();
+ 502   1              P0=0x27;        delay();
+ 503   1              P0=0x26;        delay();
+ 504   1              P0=0x25;        delay();
+ 505   1              P0=0x24;        delay();        
+ 506   1              P0=0x23;        delay();
+ 507   1              P0=0x22;        delay();
+ 508   1              P0=0x21;        delay();
+ 509   1              P0=0x20;    delay();
+ 510   1              P0=0x1f;        delay();
+ 511   1              P0=0x1e;        delay();
+ 512   1              P0=0x1d;        delay();
+ 513   1              P0=0x1c;        delay();
+ 514   1              P0=0x1b;        delay();
+ 515   1              P0=0x1a;        delay();
+ 516   1              P0=0x19;        delay();
+ 517   1              P0=0x18;        delay();
+ 518   1              P0=0x17;        delay();
+ 519   1              P0=0x16;        delay();
+ 520   1              P0=0x15;        delay();
+ 521   1              P0=0x14;        delay();        
+ 522   1              P0=0x13;        delay();
+ 523   1              P0=0x12;        delay();
+ 524   1              P0=0x11;        delay();
+ 525   1              P0=0x10;    delay();
+ 526   1              P0=0x0f;        delay();
+ 527   1              P0=0x0e;        delay();
+ 528   1              P0=0x0d;        delay();
+ 529   1              P0=0x0c;        delay();
+ 530   1              P0=0x0b;        delay();
+ 531   1              P0=0x0a;        delay();
+ 532   1              P0=0x09;        delay();
+ 533   1              P0=0x08;        delay();
+ 534   1              P0=0x07;        delay();
+ 535   1              P0=0x06;        delay();
+ 536   1              P0=0x05;        delay();
+ 537   1              P0=0x04;        delay();        
+ 538   1              P0=0x03;        delay();
+ 539   1              P0=0x02;        delay();
+ 540   1              P0=0x01;        delay();
+ 541   1              P0=0x00;    delay();
+ 542   1              
+ 543   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   3085    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+C51 COMPILER V9.01   DA转换                                                                04/03/2017 19:12:09 PAGE 10  
+
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

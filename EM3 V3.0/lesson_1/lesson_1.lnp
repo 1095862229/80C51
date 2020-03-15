@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"点亮发光二极管.obj" 
+TO "lesson_1" 
+RAMSIZE(256) 

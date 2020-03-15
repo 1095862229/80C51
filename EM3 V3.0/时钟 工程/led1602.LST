@@ -1,0 +1,635 @@
+C51 COMPILER V9.01   LED1602                                                               04/28/2017 13:10:43 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE LED1602
+OBJECT MODULE PLACED IN led1602.OBJ
+COMPILER INVOKED BY: F:\Keil\C51\BIN\C51.EXE led1602.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg52.h>
+   2          #define uchar unsigned char
+   3          #define uint unsigned int
+   4          sbit rs=P2^6;
+   5          sbit wr=P2^5;
+   6          sbit en=P2^7;
+   7          sbit key1=P1^0;
+   8          sbit key2=P1^1;
+   9          sbit key3=P1^2;
+  10          sbit key4=P1^3;
+  11          uchar code date[]="    2017 12 31";   //3+4+2+3=13
+  12          uchar code time[]="     12:12:12";         //3+3+3+2+2=13
+  13          uchar code table[]={
+  14          0x3f,0x06,0x5b,0x4f,
+  15          0x66,0x6d,0x7d,0x07,
+  16          0x7f,0x6f,0x77,0x7c,
+  17          0x39,0x5e,0x79,0x71,
+  18          0,0x76,0x79,0x38,0x3f};
+  19          uchar tt=0,i,j,num=0;
+  20          uchar flag=':';
+  21          int miaohou=0,miaoqian=0,fenhou=0,fenqian=0,shihou=0,shiqian=0;
+  22          int riqian=3,rihou=1,yueqian=1,yuehou=2,nian2=2,nian0=0,nian1=1,nian7=7;
+  23          int nian;
+  24          void delay(uchar z)
+  25          {
+  26   1              uchar x,y;
+  27   1              for(x=z;x>0;x--)
+  28   1                      for(y=110;y>0;y--);     
+  29   1      }
+  30          void led_com(uchar com)
+  31          {
+  32   1              P0=com; 
+  33   1              rs=0;
+  34   1              delay(1);
+  35   1              en=1;
+  36   1              delay(1);
+  37   1              en=0;
+  38   1      }
+  39          
+  40          void led_date(uchar date)
+  41          {
+  42   1              rs=1;
+  43   1              P0=date;
+  44   1              delay(1);
+  45   1              en=1;
+  46   1              delay(1);
+  47   1              en=0;
+  48   1      }
+  49          void init()
+  50          {
+  51   1      //      miaohou=0;miaoqian=0;fenhou=0;fenqian=0;shihou=0;shiqian=0;
+  52   1              en=0;
+  53   1              wr=0;
+  54   1              led_com(0x38);
+  55   1              led_com(0x0e);
+C51 COMPILER V9.01   LED1602                                                               04/28/2017 13:10:43 PAGE 2   
+
+  56   1              led_com(0x06);          
+  57   1              led_com(0x01);
+  58   1              led_com(0x80);
+  59   1                      for(i=0;i<14;i++)
+  60   1                      {
+  61   2                              led_date(date[i]);
+  62   2                              delay(5);
+  63   2                      }
+  64   1                      led_com(0x80+0x40);
+  65   1              for(j=0;j<13;j++)
+  66   1                      {
+  67   2                              led_date(time[j]);
+  68   2                              delay(5);
+  69   2                      }        
+  70   1              TMOD=0x01;
+  71   1              TH0=(65536-50000)/256;
+  72   1              TL0=(65536-50000)%256;
+  73   1              EA=1;
+  74   1              ET0=1;
+  75   1              TR0=1;
+  76   1      }
+  77          void zengshi()
+  78          {
+  79   1              if(tt==20)
+  80   1              {
+  81   2                      tt=0;
+  82   2                      miaohou++;
+  83   2              if(miaohou==10)
+  84   2                      {       miaohou=0;      miaoqian++; }
+  85   2                      if(miaoqian==6)
+  86   2                      {       miaoqian=0;  fenhou++;}
+  87   2                      if(fenhou==10)
+  88   2                      {       fenhou=0;       fenqian++;}
+  89   2                      if(fenqian==6 )
+  90   2                      {       fenqian=0;      shihou++;}
+  91   2                      if(shihou==10)
+  92   2                      {shihou=0;              shiqian++;}
+  93   2                      if(shiqian==2 && shihou==4)
+  94   2                      {shiqian=0; shihou=0;}
+  95   2              }
+  96   1      }
+  97          
+  98          void zengtian()
+  99          {
+ 100   1              nian=nian2*1000+nian0*100+nian1*10+nian7;
+ 101   1              if(shiqian==0 && shihou==0 && fenqian==0 && fenhou==0 && miaoqian==0 && miaohou==0)
+ 102   1              {
+ 103   2            while((shiqian==0 && shihou==0 && fenqian==0 && fenhou==0 && miaoqian==0 && miaohou==0));
+ 104   2                      if((nian%4==0 &&nian%100!=0)||nian%400==0)
+ 105   2                      {
+ 106   3                              if(yueqian==0)
+ 107   3                              {
+ 108   4                                      if(yuehou==1 || yuehou==3 || yuehou==5 || yuehou==7 || yuehou==8)
+ 109   4                                      {       rihou++;
+ 110   5                                              if(riqian<3 &&  rihou==10) 
+ 111   5                                              {       rihou=0;  riqian++;}
+ 112   5                                              if(riqian==3 && rihou==2)
+ 113   5                                              {       yuehou++;       riqian=0;       rihou=1;        }
+ 114   5                                      }
+ 115   4                                      else if(yuehou==4||yuehou==6||yuehou==9)
+ 116   4                                      {
+ 117   5                                              rihou++;
+C51 COMPILER V9.01   LED1602                                                               04/28/2017 13:10:43 PAGE 3   
+
+ 118   5                                              if( riqian<3 && rihou==10)
+ 119   5                                              {rihou=0;       riqian++;       }
+ 120   5                                              if(riqian==3 && rihou==10)
+ 121   5                                              {yuehou++;      riqian=0; rihou=1;}
+ 122   5                                      }
+ 123   4                                      else
+ 124   4                                      {
+ 125   5                                              rihou++;
+ 126   5                                              if(riqian==3 && rihou==10)
+ 127   5                                              {riqian=0;      rihou=1;        yuehou++;}
+ 128   5                                              if(riqian<2 && rihou==10)
+ 129   5                                              {rihou=0;       riqian++;}
+ 130   5                                      }
+ 131   4                                      if(yuehou==10)
+ 132   4                                      {
+ 133   5                                              yueqian++;      yuehou=0;
+ 134   5                                      }               
+ 135   4                              }
+ 136   3                              else
+ 137   3                              {
+ 138   4                                      if(yuehou==0 || yuehou==2)
+ 139   4                                      {
+ 140   5                                              rihou++;
+ 141   5                                              if(riqian<3 && rihou==10)
+ 142   5                                              {rihou=0;       riqian++;}
+ 143   5                                              if(riqian==3 && rihou==2)
+ 144   5                                              {rihou=1;       riqian=0;       yuehou++;}
+ 145   5                                      }
+ 146   4                                      if(yuehou==1)
+ 147   4                                      {
+ 148   5                                              rihou++;
+ 149   5                                              if(riqian<3 && rihou==10)
+ 150   5                                              {rihou=1;               riqian++;       }
+ 151   5                                              if(riqian==3 && rihou==10)
+ 152   5                                              {yuehou++;      riqian=0;       rihou=1;}
+ 153   5                                      }
+ 154   4      
+ 155   4                              }
+ 156   3                              
+ 157   3                      }
+ 158   2                      else
+ 159   2                      {
+ 160   3                              if(yueqian==0)
+ 161   3                              {
+ 162   4                                      if(yuehou==1 || yuehou==3 || yuehou==5 || yuehou==7 || yuehou==8)
+ 163   4                                      {       rihou++;
+ 164   5                                              if(riqian<3 &&  rihou==10) 
+ 165   5                                              {       rihou=0;  riqian++;}
+ 166   5                                              if(riqian==3 && rihou==2)
+ 167   5                                              {       yuehou++;       riqian=0;       rihou=1;        }
+ 168   5                                      }
+ 169   4                                      else if(yuehou==4||yuehou==6||yuehou==9)
+ 170   4                                      {
+ 171   5                                              rihou++;
+ 172   5                                              if(riqian<3 && rihou==10)
+ 173   5                                              {rihou=0;       riqian++;       }
+ 174   5                                              if(riqian==3 && rihou==10)
+ 175   5                                              {yuehou++;      riqian=0;       rihou=1;}
+ 176   5                                      }
+ 177   4                                      else
+ 178   4                                      {
+ 179   5                                              rihou++;
+C51 COMPILER V9.01   LED1602                                                               04/28/2017 13:10:43 PAGE 4   
+
+ 180   5                                              if(riqian==2 && rihou==9)
+ 181   5                                              {riqian=0;      rihou=1;        yuehou++;}
+ 182   5                                              if(riqian<2 && rihou==10)
+ 183   5                                              {rihou=0;       riqian++;}
+ 184   5                                      }               
+ 185   4                      
+ 186   4                                      if(yuehou==10)
+ 187   4                                      {
+ 188   5                                              yueqian++;      yuehou=0;
+ 189   5                                      }
+ 190   4                              }
+ 191   3                              else
+ 192   3                              {
+ 193   4                                      if(yuehou==0 || yuehou==2)
+ 194   4                                      {
+ 195   5                                              rihou++;
+ 196   5                                              if(riqian<3 && rihou==10)
+ 197   5                                              {rihou=0;       riqian++;} 
+ 198   5                                              if(riqian==3 && rihou==2)
+ 199   5                                              {rihou=1;       riqian=0;       yuehou++;}
+ 200   5                                      }
+ 201   4                                      if(yuehou==1)
+ 202   4                                      {
+ 203   5                                              rihou++;
+ 204   5                                              if(riqian<3 && rihou==10)
+ 205   5                                              {rihou=0;       riqian++;       }
+ 206   5                                              if(riqian==3 && rihou==10)
+ 207   5                                              {yuehou++;      riqian=0; rihou=1;}
+ 208   5                                      }
+ 209   4                              }
+ 210   3      
+ 211   3                      }
+ 212   2              }
+ 213   1              if(yueqian==1 && yuehou==3)
+ 214   1              {
+ 215   2                      yueqian=0;      yuehou=1;       nian++;
+ 216   2              }
+ 217   1              nian2=nian/1000;
+ 218   1              nian0=nian%1000/100;
+ 219   1              nian1=nian%100/10;
+ 220   1              nian7=nian%10;
+ 221   1      }
+ 222          
+ 223          void display(uchar shiqian,uchar shihou,uchar fenqian,uchar fenhou,uchar miaoqian,uchar miaohou)
+ 224          {
+ 225   1              led_com(0x80+0x40+5);
+ 226   1              led_date(0x30+shiqian);
+ 227   1              delay(5);
+ 228   1              led_com(0x80+0x40+6);
+ 229   1              led_date(0x30+shihou);
+ 230   1              delay(5);
+ 231   1              led_com(0x80+0x40+7);
+ 232   1              led_date(flag);
+ 233   1              delay(5);
+ 234   1              led_com(0x80+0x40+8);
+ 235   1              led_date(0x30+fenqian);
+ 236   1              delay(5);
+ 237   1              led_com(0x80+0x40+9);
+ 238   1              led_date(0x30+fenhou);
+ 239   1              delay(5);
+ 240   1              led_com(0x80+0x40+10);
+ 241   1              led_date(flag);
+C51 COMPILER V9.01   LED1602                                                               04/28/2017 13:10:43 PAGE 5   
+
+ 242   1              delay(5);
+ 243   1              led_com(0x80+0x40+11);
+ 244   1              led_date(0x30+miaoqian);
+ 245   1              delay(5);
+ 246   1              led_com(0x80+0x40+12);
+ 247   1              led_date(0x30+miaohou);
+ 248   1              delay(5);
+ 249   1      }
+ 250          
+ 251          
+ 252          void displaydate(uchar nian2,uchar nian0,uchar nian1,uchar nian7,uchar yueqian,uchar yuehou,uchar riqian,u
+             -char rihou)
+ 253          {
+ 254   1              led_com(0x80+3);
+ 255   1              led_date(0x30+nian2);
+ 256   1              delay(5);
+ 257   1              led_com(0x80+4);
+ 258   1              led_date(0x30+nian0);
+ 259   1              delay(5);
+ 260   1              led_com(0x80+5);
+ 261   1              led_date(0x30+nian1);
+ 262   1              delay(5);
+ 263   1              led_com(0x80+6);
+ 264   1              led_date(0x30+nian7);
+ 265   1              delay(5);
+ 266   1              led_com(0x80+8);
+ 267   1              led_date(0x30+yueqian);
+ 268   1              delay(5);
+ 269   1              led_com(0x80+9);
+ 270   1              led_date(0x30+yuehou);
+ 271   1              delay(5);
+ 272   1              led_com(0x80+11);
+ 273   1              led_date(0x30+riqian);
+ 274   1              delay(5);
+ 275   1              led_com(0x80+12);
+ 276   1              led_date(0x30+rihou);
+ 277   1              delay(5);
+ 278   1      }
+ 279          
+ 280          void keyscans()
+ 281          {
+ 282   1              if(key1==0)
+ 283   1              {
+ 284   2                      delay(5);
+ 285   2                      if(key1==0)
+ 286   2                      {
+ 287   3                               TR0=0;
+ 288   3                               num++;
+ 289   3                               led_com(0x0c);
+ 290   3                      }
+ 291   2                      while(!key1);
+ 292   2              }
+ 293   1              if(num==7) 
+ 294   1              { num=0;
+ 295   2                      TR0=1;
+ 296   2              }
+ 297   1              if(num==1)
+ 298   1              {
+ 299   2                      while(key1==1)
+ 300   2                      {       led_com(0x80+0x40+12);
+ 301   3                              led_com(0x0f);
+ 302   3                              if(key2==0)
+C51 COMPILER V9.01   LED1602                                                               04/28/2017 13:10:43 PAGE 6   
+
+ 303   3                              {       delay(5);
+ 304   4                                      if(key2==0)
+ 305   4                                      {
+ 306   5                                              miaohou++;
+ 307   5                                              if(miaohou==10)
+ 308   5                                                      miaohou=0;
+ 309   5                                                      display(shiqian,shihou,fenqian,fenhou,miaoqian,miaohou);
+ 310   5                                                      led_com(0x0c);
+ 311   5                                      }
+ 312   4                                      while(!key2);
+ 313   4                              }
+ 314   3                              if(key3==0)
+ 315   3                              {
+ 316   4                                      delay(5);
+ 317   4                                      if(key3==0)
+ 318   4                                      {
+ 319   5                                              miaohou--;
+ 320   5                                              if(miaohou==-1)
+ 321   5                                                      miaohou=9;
+ 322   5                                                      display(shiqian,shihou,fenqian,fenhou,miaoqian,miaohou);
+ 323   5                                                      led_com(0x0c);
+ 324   5                                      }
+ 325   4                                      while(!key3);
+ 326   4                              }
+ 327   3                              if(key4==0)
+ 328   3                              {
+ 329   4                              delay(5);
+ 330   4                              if(key4==0)
+ 331   4                              {
+ 332   5                                        led_com(0x0c);
+ 333   5                                        TR0=1;
+ 334   5                                        num=0;
+ 335   5                              }
+ 336   4                              while(!key4);
+ 337   4                              return;
+ 338   4                              }                                       
+ 339   3                      }
+ 340   2              } 
+ 341   1              if(num==2)
+ 342   1              {
+ 343   2                      while(key1==1)
+ 344   2                      {       led_com(0x80+0x40+11);
+ 345   3                              led_com(0x0f);
+ 346   3                              if(key2==0)
+ 347   3                              {       delay(5);
+ 348   4                                      if(key2==0)
+ 349   4                                      {
+ 350   5                                              miaoqian++;
+ 351   5                                              if(miaoqian==6)
+ 352   5                                                      miaoqian=0;
+ 353   5                                                      display(shiqian,shihou,fenqian,fenhou,miaoqian,miaohou);
+ 354   5                                                      led_com(0x0c);
+ 355   5                                      }
+ 356   4                                      while(!key2);
+ 357   4                              }
+ 358   3                              if(key3==0)
+ 359   3                              {
+ 360   4                                      delay(5);
+ 361   4                                      if(key3==0)
+ 362   4                                      {
+ 363   5                                              miaoqian--;
+ 364   5                                              if(miaoqian==-1)
+C51 COMPILER V9.01   LED1602                                                               04/28/2017 13:10:43 PAGE 7   
+
+ 365   5                                                      miaoqian=5;
+ 366   5                                                      display(shiqian,shihou,fenqian,fenhou,miaoqian,miaohou);
+ 367   5                                                      led_com(0x0c);
+ 368   5                                      }
+ 369   4                                      while(!key3);
+ 370   4                              }
+ 371   3                              if(key4==0)
+ 372   3                              {
+ 373   4                              delay(5);
+ 374   4                              if(key4==0)
+ 375   4                              {
+ 376   5                                        led_com(0x0c);
+ 377   5                                        TR0=1;
+ 378   5                                        num=0;
+ 379   5                              }
+ 380   4                              while(!key4);
+ 381   4                              return;
+ 382   4                              }               
+ 383   3              
+ 384   3                               }
+ 385   2              }
+ 386   1              if(num==3)
+ 387   1              {
+ 388   2                      while(key1==1)
+ 389   2                      {       led_com(0x80+0x40+9);
+ 390   3                              led_com(0x0f); 
+ 391   3                              if(key2==0)
+ 392   3                              {       delay(5);
+ 393   4                                      if(key2==0)
+ 394   4                                      {
+ 395   5                                              fenhou++;
+ 396   5                                              if(fenhou==10)
+ 397   5                                                      fenhou=0;
+ 398   5                                                      display(shiqian,shihou,fenqian,fenhou,miaoqian,miaohou);
+ 399   5                                                      led_com(0x0c);
+ 400   5                                      }
+ 401   4                                      while(!key2);
+ 402   4                              }
+ 403   3                              if(key3==0)
+ 404   3                              {
+ 405   4                                      delay(5);
+ 406   4                                      if(key3==0)
+ 407   4                                      {
+ 408   5                                              fenhou--;
+ 409   5                                              if(fenhou==-1)
+ 410   5                                                      fenhou=9;
+ 411   5                                                      display(shiqian,shihou,fenqian,fenhou,miaoqian,miaohou);
+ 412   5                                                      led_com(0x0c);
+ 413   5                                      }
+ 414   4                                      while(!key3);
+ 415   4                              }
+ 416   3                                                      if(key4==0)
+ 417   3                              {
+ 418   4                              delay(5);
+ 419   4                              if(key4==0)
+ 420   4                              {
+ 421   5                                        led_com(0x0c);
+ 422   5                                        TR0=1;
+ 423   5                                        num=0;
+ 424   5                              }
+ 425   4                              while(!key4);
+ 426   4                              return;
+C51 COMPILER V9.01   LED1602                                                               04/28/2017 13:10:43 PAGE 8   
+
+ 427   4                              }               
+ 428   3              
+ 429   3                      }
+ 430   2              } 
+ 431   1              if(num==4)
+ 432   1              {
+ 433   2                      while(key1==1)
+ 434   2                      {       led_com(0x80+0x40+8);
+ 435   3                              led_com(0x0f);
+ 436   3                                                      if(key2==0)
+ 437   3                              {       delay(5);
+ 438   4                                      if(key2==0)
+ 439   4                                      {
+ 440   5                                              fenqian++;
+ 441   5                                              if(fenqian==6)
+ 442   5                                                      fenqian=0;
+ 443   5                                                      display(shiqian,shihou,fenqian,fenhou,miaoqian,miaohou);
+ 444   5                                                      led_com(0x0c);
+ 445   5                                      }
+ 446   4                                      while(!key2);
+ 447   4                              }
+ 448   3                              if(key3==0)
+ 449   3                              {
+ 450   4                                      delay(5);
+ 451   4                                      if(key3==0)
+ 452   4                                      {
+ 453   5                                              fenqian--;
+ 454   5                                              if(fenqian==-1)
+ 455   5                                                      fenqian=5;
+ 456   5                                                      display(shiqian,shihou,fenqian,fenhou,miaoqian,miaohou);
+ 457   5                                                      led_com(0x0c);
+ 458   5                                      }
+ 459   4                                      while(!key3);
+ 460   4                              }
+ 461   3                                                      if(key4==0)
+ 462   3                              {
+ 463   4                              delay(5);
+ 464   4                              if(key4==0)
+ 465   4                              {
+ 466   5                                        led_com(0x0c);
+ 467   5                                        TR0=1;
+ 468   5                                        num=0;
+ 469   5                              }
+ 470   4                              while(!key4);
+ 471   4                              return;
+ 472   4                              }               
+ 473   3      
+ 474   3                       }
+ 475   2              } 
+ 476   1              if(num==5)
+ 477   1              {
+ 478   2                      while(key1==1)
+ 479   2                      {       led_com(0x80+0x40+6);
+ 480   3                              led_com(0x0f);
+ 481   3                                              if(key2==0)
+ 482   3                              {       delay(5);
+ 483   4                                      if(key2==0)
+ 484   4                                      {
+ 485   5                                              shihou++;
+ 486   5                                              if(shiqian==2)
+ 487   5                                              {       if(shihou==4)   shihou=0;}
+ 488   5                                              else{if(shihou==10)             shihou=0;}
+C51 COMPILER V9.01   LED1602                                                               04/28/2017 13:10:43 PAGE 9   
+
+ 489   5                                                      display(shiqian,shihou,fenqian,fenhou,miaoqian,miaohou);
+ 490   5                                                      led_com(0x0c);
+ 491   5                                              
+ 492   5                                      }
+ 493   4                                      while(!key2);
+ 494   4                              }
+ 495   3                              if(key3==0)
+ 496   3                              {
+ 497   4                                      delay(5);
+ 498   4                                      if(key3==0)
+ 499   4                                      {
+ 500   5                                              shihou--;
+ 501   5                                              if(shihou==-1)
+ 502   5                                              {
+ 503   6                                                      if(shiqian==2)shihou=3;
+ 504   6                                                      else    shihou=9;
+ 505   6                                              }
+ 506   5                                                      display(shiqian,shihou,fenqian,fenhou,miaoqian,miaohou);
+ 507   5                                                      led_com(0x0c);
+ 508   5                                      }
+ 509   4                                      while(!key3);
+ 510   4                              }
+ 511   3                                                      if(key4==0)
+ 512   3                              {
+ 513   4                              delay(5);
+ 514   4                              if(key4==0)
+ 515   4                              {
+ 516   5                                        led_com(0x0c);
+ 517   5                                        TR0=1;
+ 518   5                                        num=0;
+ 519   5                              }
+ 520   4                              while(!key4);
+ 521   4                              return;
+ 522   4                              }               
+ 523   3      
+ 524   3                       }
+ 525   2              } 
+ 526   1              if(num==6)
+ 527   1              {
+ 528   2                      while(key1==1)
+ 529   2                      {       led_com(0x80+0x40+5);
+ 530   3                              led_com(0x0f);
+ 531   3                                              if(key2==0)
+ 532   3                              {       delay(5);
+ 533   4                                      if(key2==0)
+ 534   4                                      {
+ 535   5                                              shiqian++;
+ 536   5                                              if(shiqian==3)
+ 537   5                                                      shiqian=0;
+ 538   5                                                      display(shiqian,shihou,fenqian,fenhou,miaoqian,miaohou);
+ 539   5                                                      led_com(0x0c);
+ 540   5                                      }
+ 541   4                                      while(!key2);
+ 542   4                              }
+ 543   3                              if(key3==0)
+ 544   3                              {
+ 545   4                                      delay(5);
+ 546   4                                      if(key3==0)
+ 547   4                                      {
+ 548   5                                              shiqian--;
+ 549   5                                              if(shiqian==-1)
+ 550   5                                                      shiqian=2;
+C51 COMPILER V9.01   LED1602                                                               04/28/2017 13:10:43 PAGE 10  
+
+ 551   5                                                      display(shiqian,shihou,fenqian,fenhou,miaoqian,miaohou);
+ 552   5                                                      led_com(0x0c);
+ 553   5                                      }
+ 554   4                                      while(!key3);
+ 555   4                              }
+ 556   3                                                      if(key4==0)
+ 557   3                              {
+ 558   4                              delay(5);
+ 559   4                              if(key4==0)
+ 560   4                              {
+ 561   5                                        led_com(0x0c);
+ 562   5                                        TR0=1;
+ 563   5                                        num=0;
+ 564   5                              }
+ 565   4                              while(!key4);
+ 566   4                              return;
+ 567   4                              }               
+ 568   3      
+ 569   3                       }
+ 570   2              } 
+ 571   1      }
+ 572          
+ 573          
+ 574          void main()
+ 575          {
+ 576   1              init();
+ 577   1              while(1)
+ 578   1              {
+ 579   2      //      zengshi();
+ 580   2              zengtian();
+ 581   2              display(shiqian,shihou,fenqian,fenhou,miaoqian,miaohou);
+ 582   2              displaydate(nian2,nian0,nian1,nian7,yueqian,yuehou,riqian,rihou);
+ 583   2              keyscans();
+ 584   2              }
+ 585   1      }
+ 586          
+ 587          void timer0() interrupt 1
+ 588          {
+ 589   1              TH0=(65536-50000)/256;
+ 590   1              TL0=(65536-50000)%256;
+ 591   1              tt++;
+ 592   1              zengshi();
+ 593   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   2689    ----
+   CONSTANT SIZE    =     50    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     35      14
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

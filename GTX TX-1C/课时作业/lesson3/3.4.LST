@@ -1,0 +1,75 @@
+C51 COMPILER V9.01   3_4                                                                   04/21/2017 13:16:17 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE 3_4
+OBJECT MODULE PLACED IN 3.4.OBJ
+COMPILER INVOKED BY: F:\Keil\C51\BIN\C51.EXE 3.4.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg52.h>  //52单片机头文件
+   2          #include <intrins.h> //包含有左右循环移位子函数的库
+   3          #define uint unsigned int    //宏定义
+   4          #define uchar unsigned char  //宏定义
+   5          uchar tabwe[]=
+   6          {
+   7          0xfe,0xfd,0xfb,0xf7,0xef,0xdf
+   8          };
+   9          uchar code tabdu[]={
+  10          0x3f,0x06,0x5b,0x4f,
+  11          0x66,0x6d,0x7d,0x07,
+  12          0x7f,0x6f,0x77,0x7c,
+  13          0x39,0x5e,0x79,0x71};
+  14          
+  15          uchar tt,i,j;
+  16          sbit dula=P2^6;
+  17          sbit wela=P2^7;
+  18          void main()
+  19          {
+  20   1              TMOD=0x01;
+  21   1              TH0=(65536-50000)/256;
+  22   1              TL0=(65536-50000)%256;
+  23   1              EA=1;
+  24   1              ET0=1;
+  25   1              TR0=1;
+  26   1              while(1);
+  27   1      }
+  28          
+  29          void timer0() interrupt 1
+  30          {
+  31   1              TH0=(65536-50000)/256;
+  32   1              TL0=(65536-50000)%256;
+  33   1              tt++;
+  34   1              if(tt==10)
+  35   1              {
+  36   2                      tt=0;
+  37   2                      wela=1;
+  38   2                      
+  39   2                      P0=tabwe[i];
+  40   2                      i++;
+  41   2                      if(i==6)i=0;
+  42   2                      wela=0;
+  43   2                      dula=1;
+  44   2                      P0=tabdu[j];
+  45   2                      j++;
+  46   2                      if(j==16)j=0;
+  47   2                      dula=0;
+  48   2              }
+  49   1              
+  50   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    101    ----
+   CONSTANT SIZE    =     16    ----
+C51 COMPILER V9.01   3_4                                                                   04/21/2017 13:16:17 PAGE 2   
+
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      9    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

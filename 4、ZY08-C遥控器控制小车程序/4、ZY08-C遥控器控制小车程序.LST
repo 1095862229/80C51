@@ -1,0 +1,315 @@
+C51 COMPILER V9.00   4¡¢ZY08_CÒ£¿ØÆ÷¿Ø_ÆÐ¡³µ³ÌÐò                                           01/16/2015 16:47:04 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE 4¡¢ZY08_CÒ£¿ØÆ÷¿Ø_ÆÐ¡³µ³ÌÐò
+OBJECT MODULE PLACED IN 4¡¢ZY08-CÒ£¿ØÆ÷¿ØÖÆÐ¡³µ³ÌÐò.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE 4¡¢ZY08-CÒ£¿ØÆ÷¿ØÖÆÐ¡³µ³ÌÐò.C BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /*****************ZY08-CÖÇÄÜÑ­¼£¡¢Ò£¿Ø¡¢±ÜÕÏ¡¢Ñ°¹â»úÆ÷ÈË*****************
+   2          //=====================================================================//
+   3                              ºìÍâÒ£¿ØÆ÷½âÂë³ÌÐòÑÝÊ¾                         //
+   4          //  ±¾³ÌÐòÖ÷Òª½«ÏÖÔÚ±È½Ï³£ÓÃTX1300Ò£¿ØÆ÷½øÐÐ½âÂë,½«½âÂëºóµÄÊý¾ÝÍ¨¹ýP2¶Ë//
+   5          //¿ÚµÄÊýÂë¹ÜÏÔÊ¾³öÀ´,ÎªÁË¸üºÃµÄ¿´µ½ÔËÐÐ¹ý³Ì,ÌØ¼ÓÁËÈý¸öÖ¸Ê¾µÆÓÃÀ´Ö¸Ê¾µ± //
+   6          //Ç°ÔËÐÐ×´Ì¬.P10Ö÷ÒªÓÃÀ´ÉÁÁÁ,±íÊ¾³ÌÐòÕýÔÚÔËÐÐ,P11ÔòÓÃÀ´±íÊ¾½ÓÊÕµ½Êý¾Ý, //
+   7          //P12±íÊ¾´¥·¢ÄÚ²¿µÄ¶¨Ê±Æ÷²Ù×÷.P13µÄÉÁÁÁ±íÊ¾ÕýÈ·½ÓÊÕÍêÒ»¸öÊý¾Ý.         //
+   8          //  ³ÌÐòÔËÐÐÐ§¹û: ´ò¿ª±¾»úµçÔ´¿ª¹Ø,¿ÉÒÔ¿´µ½P10²»Í£µÄÉÁ¶¯,°´ÏÂÒ£¿ØÆ÷µÄÊý//
+   9          //×Ö¼ü,ÊýÂë¹ÜÔòÏÔÊ¾ÏàÓ¦µÄÊý×Ö¼ü(1-9).¿ÉÒÔ¿´µ½P11,P12ÔÚÏÔÊ¾ºó³ÊÁÁ×´Ì¬.Ôò//
+  10          //¿ÉÒÔ½ÓÊÕÏÂÒ»¸öÊý¾Ý,ÔÚÉÏÃæ¹ý³ÌÖÐ¿ÉÒÔ¿´µ½P13ÉÁÁÁÁËÒ»ÏÂ.±íÃ÷ÉÏ´ÎÕýÈ·½ÓÊÕ//
+  11          //µ½Êý¾Ý. 
+  12          //---------------------------------------------------------------------//
+  13          
+  14          *  Æ½Ì¨£ºZY08-CÖÇÄÜÑ­¼£¡¢Ò£¿Ø¡¢±ÜÕÏ¡¢Ñ°¹â»úÆ÷ÈË + Keil U4 + STC89C52
+  15          *  ³ÌÐòÃû³Æ£º4¡¢ZY08-CÒ£¿ØÆ÷¿ØÖÆÐ¡³µ³ÌÐò
+  16          *  ¹«Ë¾£ººþÄÏÖÇÓî¿Æ½ÌÉè±¸ÓÐÏÞ¹«Ë¾
+  17          *  ÌÔ±¦£ºhttp://tmmcu1688.taobao.com       
+  18          *  ÍøÕ¾£ºwww.china-zhiyu.com    
+  19          *  ±àÐ´£ºÖÇÓî¹«Ë¾ÑÐ·¢Ò»²¿
+  20          *  ÈÕÆÚ£º2015-1-15
+  21          *  ½»Á÷:ÖÇÄÜ³µQQ:1018973181 
+  22          *  ¾§Õñ:11.0592MHZ
+  23          *  ÊÛºó¼¼ÊõËµÃ÷£ºÃâ·Ñ¿ªÔ´£¬²»Ö§³Ö¿Í»§×Ô¼ºÐÞ¸Ä³ÌÐò·ÖÎöÓë¸ÄÕý£¬¿ÉÒÔÌá¹©ÎÒ¹«Ë¾³ÌÐòËµÃ÷
+  24          *  ÊÓÆµ½Ì³Ì£º±¾Ð¡³µÅäÌ×Ñ§Ï°CÓïÑÔÏêÏ¸ÊÓÆµ½Ì³Ì£¬×ÊÁÏÍ³Ò»ÍøÅÌÏÂÔØ
+  25          ******************************************************************/   
+  26          
+  27          #include <reg52.h>                                  //°üº¬51µ¥Æ¬»úÏà¹ØµÄÍ·ÎÄ¼þ
+  28          #include <intrins.h>
+  29          #define uint    unsigned int                          //ÖØ¶¨ÒåÎÞ·ûºÅÕûÊýÀàÐÍ
+  30          #define uchar   unsigned char                         //ÖØ¶¨ÒåÎÞ·ûºÅ×Ö·ûÀàÐÍ
+  31          
+  32          uchar code  LedShowData[]={0x03,0x9F,0x25,0x0D,0x99,  //¶¨ÒåÊýÂë¹ÜÏÔÊ¾Êý¾Ý
+  33                                      0x49,0x41,0x1F,0x01,0x19};//0,1,2,3,4,5,6,7,8,9
+  34          
+  35          uchar code  RecvData[]={0x19,0x46,0x15,0x44,0x43,0x40,0x0D,0x0E,0x00,0x0F};
+  36          
+  37          uchar IRCOM[7];
+  38          
+  39          static unsigned int LedFlash;                         //¶¨ÒåÉÁ¶¯ÆµÂÊ¼ÆÊý±äÁ¿
+  40          
+  41          unsigned char RunFlag=0;                              //¶¨ÒåÔËÐÐ±êÖ¾Î»
+  42          bit EnableLight=0;                                    //¶¨ÒåÖ¸Ê¾µÆÊ¹ÄÜÎ»
+  43          /***********Íê³É»ù±¾Êý¾Ý±äÁ¿¶¨Òå**************/
+  44          sbit S1State=P1^0;                                    //¶¨ÒåS1×´Ì¬±êÖ¾Î»
+  45          sbit S2State=P1^1;                                    //¶¨ÒåS2×´Ì¬±êÖ¾Î»
+  46          sbit B1State=P1^2;                                    //¶¨ÒåB1×´Ì¬±êÖ¾Î»
+  47          sbit IRState=P1^3;                                    //¶¨ÒåIR×´Ì¬±êÖ¾Î»
+  48          sbit RunStopState=P1^4;                               //¶¨ÒåÔËÐÐÍ£Ö¹±êÖ¾Î»
+  49          sbit FontIRState=P1^5;                                //¶¨ÒåFontIR×´Ì¬±êÖ¾Î»
+  50          sbit LeftIRState=P1^6;                                //¶¨ÒåLeftIR×´Ì¬±êÖ¾Î»
+  51          sbit RightIRState=P1^7;                               //¶¨ÒåRightIRState×´Ì¬±êÖ¾Î»
+  52          /*************Íê³É×´Ì¬Ö¸Ê¾µÆ¶¨Òå*************/
+  53          sbit S1=P3^2;                                         //¶¨ÒåS1°´¼ü¶Ë¿Ú
+  54          sbit S2=P3^4;                                         //¶¨ÒåS2°´¼ü¶Ë¿Ú
+  55          /*************Íê³É°´¼ü¶Ë¿ÚµÄ¶¨Òå*************/       
+C51 COMPILER V9.00   4¡¢ZY08_CÒ£¿ØÆ÷¿Ø_ÆÐ¡³µ³ÌÐò                                           01/16/2015 16:47:04 PAGE 2   
+
+  56          sbit LeftLed=P2^0;                                    //¶¨ÒåÇ°·½×ó²àÖ¸Ê¾µÆ¶Ë¿Ú
+  57          sbit RightLed=P0^7;                                   //¶¨ÒåÇ°·½ÓÒ²àÖ¸Ê¾µÆ¶Ë¿Ú
+  58          /*************Íê³ÉÇ°·½Ö¸Ê¾µÆ¶Ë¿Ú¶¨Òå*********/
+  59          sbit LeftIR=P3^5;                                     //¶¨ÒåÇ°·½×ó²àºìÍâÌ½Í·
+  60          sbit RightIR=P3^6;                                    //¶¨ÒåÇ°Ö÷ÓÒ²àºìÍâÌ½Í·
+  61          sbit FontIR=P3^7;                                     //¶¨ÒåÕýÇ°·½ºìÍâÌ½Í·
+  62          /*************Íê³ÉºìÍâÌ½Í·¶Ë¿Ú¶¨Òå***********/
+  63          sbit M1A=P0^0;                                        //¶¨Òåµç»ú1ÕýÏò¶Ë¿Ú
+  64          sbit M1B=P0^1;                                        //¶¨Òåµç»ú1·´Ïò¶Ë¿Ú
+  65          sbit M2A=P0^2;                                        //¶¨Òåµç»ú2ÕýÏò¶Ë¿Ú
+  66          sbit M2B=P0^3;                                        //¶¨Òåµç»ú2·´Ïò¶Ë¿Ú
+  67          /*************Íê³Éµç»ú¶Ë¿Ú¶¨Òå***************/
+  68          sbit B1=P0^4;                                         //¶¨Òå»°Í²´«¸ÐÆ÷¶Ë¿Ú
+  69          sbit RL1=P0^5;                                        //¶¨Òå¹âÃôµç×è¶Ë¿Ú
+  70          sbit SB1=P0^6;                                        //¶¨Òå·äÃù¶Ë¿Ú
+  71          /*********Íê³É»°Í²,¹âÃôµç×è,·äÃùÆ÷.¶Ë¿Ú¶¨Òå**/
+  72          sbit IRIN=P3^3;                                       //¶¨ÒåºìÍâ½ÓÊÕ¶Ë¿Ú
+  73          /*********Íê³ÉºìÍâ½ÓÊÕ¶Ë¿ÚµÄ¶¨Òå*************/
+  74          #define ShowPort P2                                   //¶¨ÒåÊýÂë¹ÜÏÔÊ¾¶Ë¿Ú
+  75          
+  76          extern void ControlCar(uchar CarType);                //ÉùÃ÷Ð¡³µ¿ØÖÆ×Ó³ÌÐò
+  77          
+  78          void delayms(unsigned char x)                         //0.14mSÑÓÊ±³ÌÐò
+  79          {
+  80   1        unsigned char i;                                    //¶¨ÒåÁÙÊ±±äÁ¿
+  81   1        while(x--)                                          //ÑÓÊ±Ê±¼äÑ­»·
+  82   1        {
+  83   2          for (i = 0; i<13; i++) {}                         //14mSÑÓÊ±
+  84   2        }
+  85   1      }
+  86          
+  87          void Delay1ms(unsigned int i) 
+  88          { 
+  89   1      unsigned char j,k; 
+  90   1      do{ 
+  91   2        j = 10; 
+  92   2        do{ 
+  93   3         k = 50; 
+  94   3         do{ 
+  95   4          _nop_(); 
+  96   4         }while(--k);     
+  97   3        }while(--j); 
+  98   2      }while(--i); 
+  99   1      
+ 100   1      } 
+ 101          void Delay()                                          //¶¨ÒåÑÓÊ±×Ó³ÌÐò
+ 102          { uint DelayTime=30000;                               //¶¨ÒåÑÓÊ±Ê±¼ä±äÁ¿
+ 103   1        while(DelayTime--);                                 //¿ªÊ¼½øÐÐÑÓÊ±Ñ­»·
+ 104   1        return;                                             //×Ó³ÌÐò·µ»Ø
+ 105   1      }
+ 106          
+ 107          void tingzhi()
+ 108          {
+ 109   1         M1A=0;                                   //½«M1µç»úA¶Ë³õÊ¼»¯Îª0
+ 110   1         M1B=0;                                   //½«M1µç»úB¶Ë³õÊ¼»¯Îª0
+ 111   1         M2A=0;                                   //½«M2µç»úA¶Ë³õÊ¼»¯Îª0
+ 112   1         M2B=0;
+ 113   1      
+ 114   1      }
+ 115          
+ 116          void qianjin()
+ 117          {
+C51 COMPILER V9.00   4¡¢ZY08_CÒ£¿ØÆ÷¿Ø_ÆÐ¡³µ³ÌÐò                                           01/16/2015 16:47:04 PAGE 3   
+
+ 118   1         M1A=1;                                   
+ 119   1         M1B=0;                                   
+ 120   1         M2A=1;                                   
+ 121   1         M2B=0;
+ 122   1      }
+ 123          
+ 124          void houtui()
+ 125          {
+ 126   1         M1A=0;                                   
+ 127   1         M1B=1;                                   
+ 128   1         M2A=0;                                   
+ 129   1         M2B=1;
+ 130   1      }
+ 131          
+ 132          void youzhuan()
+ 133          {
+ 134   1         M1A=0;                                   
+ 135   1         M1B=1;                                   
+ 136   1         M2A=1;                                   
+ 137   1         M2B=0;
+ 138   1      
+ 139   1      }
+ 140          
+ 141          void zuozhuan()
+ 142          {
+ 143   1         M1A=1;                                   
+ 144   1         M1B=0;                                   
+ 145   1         M2A=0;                                   
+ 146   1         M2B=1;
+ 147   1      
+ 148   1      }
+ 149          
+ 150          void ControlCar(unsigned char ConType)    //¶¨Òåµç»ú¿ØÖÆ×Ó³ÌÐò
+ 151          {
+ 152   1       
+ 153   1        tingzhi();
+ 154   1       switch(ConType)                          //ÅÐ¶ÏÓÃ»§Éè¶¨µç»úÐÎÊ½
+ 155   1       {
+ 156   2        case 1:  //Ç°½ø                         //ÅÐ¶ÏÓÃ»§ÊÇ·ñÑ¡ÔñÐÎÊ½1
+ 157   2        { 
+ 158   3          
+ 159   3              tingzhi();                                                    //½øÈëÇ°½øÖ®Ç° ÏÈÍ£Ö¹Ò»¶ÎÊ±¼ä  ·ÀÖ¹µç»ú·´ÏòµçÑ¹³å»÷Ö÷°å µ¼ÖÂÏµÍ³¸´Î»
+ 160   3               Delay1ms(240);
+ 161   3              LeftLed = 0 ;
+ 162   3              qianjin();
+ 163   3          break;
+ 164   3        }
+ 165   2        case 2: //ºóÍË                          //ÅÐ¶ÏÓÃ»§ÊÇ·ñÑ¡ÔñÐÎÊ½2
+ 166   2        { 
+ 167   3          tingzhi();                                                     //½øÈëºóÍËÖ®Ç° ÏÈÍ£Ö¹Ò»¶ÎÊ±¼ä  ·ÀÖ¹µç»ú·´ÏòµçÑ¹³å»÷Ö÷°å µ¼ÖÂÏµÍ³¸´Î»
+ 168   3                Delay1ms(240);
+ 169   3              LeftLed = 1 ;    
+ 170   3              houtui();                                //M2µç»ú·´×ª
+ 171   3          break;
+ 172   3        }
+ 173   2        case 3: //×ó×ª                          //ÅÐ¶ÏÓÃ»§ÊÇ·ñÑ¡ÔñÐÎÊ½3
+ 174   2        { 
+ 175   3          tingzhi();                                                            //½øÈë×ó×ªÖ®Ç° ÏÈÍ£Ö¹Ò»¶ÎÊ±¼ä  ·ÀÖ¹µç»ú·´ÏòµçÑ¹³å»÷Ö÷°å µ¼ÖÂÏµÍ³¸´Î»
+ 176   3               Delay1ms(240); 
+ 177   3              zuozhuan();                               //M2µç»úÕý×ª
+ 178   3              break;
+ 179   3        }
+C51 COMPILER V9.00   4¡¢ZY08_CÒ£¿ØÆ÷¿Ø_ÆÐ¡³µ³ÌÐò                                           01/16/2015 16:47:04 PAGE 4   
+
+ 180   2        case 4: //ÓÒ×ª                          //ÅÐ¶ÏÓÃ»§ÊÇ·ñÑ¡ÔñÐÎÊ½4
+ 181   2        { 
+ 182   3          tingzhi();                                                            //½øÈëÓÒ×ªÖ®Ç° ÏÈÍ£Ö¹Ò»¶ÎÊ±¼ä  ·ÀÖ¹µç»ú·´ÏòµçÑ¹³å»÷Ö÷°å µ¼ÖÂÏµÍ³¸´Î»
+ 183   3                Delay1ms(240);
+ 184   3              youzhuan();                                //M1µç»úÕý×ª
+ 185   3                                                //M2µç»ú·´×ª
+ 186   3              break;
+ 187   3        }
+ 188   2        case 5: //Í£Ö¹                          //ÅÐ¶ÏÓÃ»§ÊÇ·ñÑ¡ÔñÐÎÊ½8
+ 189   2        {
+ 190   3          tingzhi();
+ 191   3              break;                                //ÍË³öµ±Ç°Ñ¡Ôñ
+ 192   3        }
+ 193   2       }
+ 194   1      }
+ 195          
+ 196          void IR_IN() interrupt 2 using 0                      //¶¨ÒåINT2Íâ²¿ÖÐ¶Ïº¯Êý
+ 197          {
+ 198   1        unsigned char j,k,N=0;                              //¶¨ÒåÁÙÊ±½ÓÊÕ±äÁ¿
+ 199   1         
+ 200   1        EX1 = 0;                                            //¹Ø±ÕÍâ²¿ÖÐ¶Ï,·ÀÖ¹ÔÙÓÐÐÅºÅµ½´ï   
+ 201   1        delayms(15);                                        //ÑÓÊ±Ê±¼ä£¬½øÐÐºìÍâÏû¶¶
+ 202   1        if (IRIN==1)                                        //ÅÐ¶ÏºìÍâÐÅºÅÊÇ·ñÏûÊ§
+ 203   1        {  
+ 204   2           EX1 =1;                                          //Íâ²¿ÖÐ¶Ï¿ª
+ 205   2               return;                                          //·µ»Ø
+ 206   2        } 
+ 207   1                                 
+ 208   1        while (!IRIN)                                       //µÈIR±äÎª¸ßµçÆ½£¬Ìø¹ý9msµÄÇ°µ¼µÍµçÆ½ÐÅºÅ¡£
+ 209   1        {
+ 210   2            delayms(1);                                     //ÑÓÊ±µÈ´ý
+ 211   2        }
+ 212   1      
+ 213   1        for (j=0;j<4;j++)                                   //²É¼¯ºìÍâÒ£¿ØÆ÷Êý¾Ý
+ 214   1        { 
+ 215   2          for (k=0;k<8;k++)                                 //·Ö´Î²É¼¯8Î»Êý¾Ý
+ 216   2          {
+ 217   3             while (IRIN)                                   //µÈ IR ±äÎªµÍµçÆ½£¬Ìø¹ý4.5msµÄÇ°µ¼¸ßµçÆ½ÐÅºÅ¡£
+ 218   3             {
+ 219   4               delayms(1);                                  //ÑÓÊ±µÈ´ý
+ 220   4             }
+ 221   3             
+ 222   3             while (!IRIN)                                  //µÈ IR ±äÎª¸ßµçÆ½
+ 223   3             {
+ 224   4               delayms(1);                                  //ÑÓÊ±µÈ´ý
+ 225   4             }
+ 226   3         
+ 227   3             while (IRIN)                                   //¼ÆËãIR¸ßµçÆ½Ê±³¤
+ 228   3             {
+ 229   4               delayms(1);                                  //ÑÓÊ±µÈ´ý
+ 230   4               N++;                                         //¼ÆÊýÆ÷¼Ó¼Ó
+ 231   4               if (N>=30)                                   //ÅÐ¶Ï¼ÆÊýÆ÷ÀÛ¼ÓÖµ
+ 232   4                   { 
+ 233   5                 EX1=1;                                     //´ò¿ªÍâ²¿ÖÐ¶Ï¹¦ÄÜ
+ 234   5                     return;                                    //·µ»Ø
+ 235   5               }                   
+ 236   4             }
+ 237   3                                             
+ 238   3            IRCOM[j]=IRCOM[j] >> 1;                         //½øÐÐÊý¾ÝÎ»ÒÆ²Ù×÷²¢×Ô¶¯²¹Áã
+ 239   3           
+ 240   3            if (N>=8)                                       //ÅÐ¶ÏÊý¾Ý³¤¶È 
+ 241   3            {
+C51 COMPILER V9.00   4¡¢ZY08_CÒ£¿ØÆ÷¿Ø_ÆÐ¡³µ³ÌÐò                                           01/16/2015 16:47:04 PAGE 5   
+
+ 242   4               IRCOM[j] = IRCOM[j] | 0x80;                  //Êý¾Ý×î¸ßÎ»²¹1
+ 243   4            } 
+ 244   3            N=0;                                            //ÇåÁãÎ»Êý¼ÆÂ¼Æ÷
+ 245   3          }
+ 246   2        }
+ 247   1         
+ 248   1        if (IRCOM[2]!=~IRCOM[3])                            //ÅÐ¶ÏµØÖ·ÂëÊÇ·ñÏàÍ¬
+ 249   1        { 
+ 250   2           EX1=1;                                           //´ò¿ªÍâ²¿ÖÐ¶Ï
+ 251   2           return;                                          //·µ»Ø
+ 252   2        }
+ 253   1      
+ 254   1        for(j=0;j<10;j++)                                   //Ñ­»·½øÐÐ¼üÂë½âÎö
+ 255   1         {
+ 256   2            if(IRCOM[2]==RecvData[j])                       //½øÐÐ¼üÎ»¶ÔÓ¦
+ 257   2            {
+ 258   3              ControlCar(j);                                          //ÊýÂë¹ÜÏÔÊ¾ÏàÓ¦ÊýÂë
+ 259   3            }
+ 260   2         }
+ 261   1         
+ 262   1         
+ 263   1         EX1 = 1;                                           //Íâ²¿ÖÐ¶Ï¿ª 
+ 264   1      } 
+ 265          
+ 266          
+ 267          
+ 268          void main(void)                                       //Ö÷³ÌÐòÈë¿Ú
+ 269          {
+ 270   1       bit ExeFlag=0;                                       //¶¨Òå¿ÉÖ´ÐÐÎ»±äÁ¿
+ 271   1       
+ 272   1       LedFlash=3000;                                       //¶ÔÉÁµÆÊý¾Ý½øÐÐ³õÊ¼»¯
+ 273   1       EX1=1;                                               //Í¬Òâ¿ªÆôÍâ²¿ÖÐ¶Ï1
+ 274   1       IT1=1;                                               //Éè¶¨Íâ²¿ÖÐ¶Ï1ÎªµÍ±ßÔµ´¥·¢ÀàÐÍ
+ 275   1       EA=1;                                                //×ÜÖÐ¶Ï¿ªÆô
+ 276   1       ShowPort=LedShowData[0];                             //ÊýÂë¹ÜÏÔÊ¾Êý×Ö0
+ 277   1      while(1)                                              //³ÌÐòÖ÷Ñ­»·
+ 278   1       {
+ 279   2         
+ 280   2         Delay();                                           //ÑÓÊ±
+ 281   2         RunStopState=~RunStopState;                        //ÔËÐÐÖ¸Ê¾µÆ×´Ì¬×ª±ä
+ 282   2        
+ 283   2       }
+ 284   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    365    ----
+   CONSTANT SIZE    =     20    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     10       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

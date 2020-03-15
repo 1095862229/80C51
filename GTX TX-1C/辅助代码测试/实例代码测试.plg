@@ -1,0 +1,36 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+F:\²âÊÔ´úÂë\uv4\GTX TX-1C\¸¨Öú´úÂë²âÊÔ\ÊµÀı´úÂë²âÊÔ.uvproj
+Project File Date:  04/23/2017
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ¼ÆÊıÆ÷.c...
+¼ÆÊÆ÷.C(50): error C101: ''al': invalid character constant
+¼ÆÊÆ÷.C(50): error C141: syntax error near '''
+¼ÆÊÆ÷.c(50): error C305: unterminated string/char const
+¼ÆÊÆ÷.C(53): error C231: 'th1': redefinition
+¼ÆÊÆ÷.C(57): error C171: 'break': missing enclosing loop
+¼ÆÊÆ÷.C(59): error C202: 'th1': undefined identifier
+¼ÆÊÆ÷.C(60): error C141: syntax error near 'return'
+¼ÆÊÆ÷.C(61): error C141: syntax error near '}'
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ¼ÆÊıÆ÷.c...
+¼ÆÊÆ÷.C(82): warning C209: '_display': too few actual parameters
+linking...
+Program Size: data=10.0 xdata=0 code=276
+creating hex file from "ÊµÀı´úÂë²âÊÔ"...
+"ÊµÀı´úÂë²âÊÔ" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ¼ÆÊıÆ÷.c...
+linking...
+Program Size: data=10.0 xdata=0 code=262
+creating hex file from "ÊµÀı´úÂë²âÊÔ"...
+"ÊµÀı´úÂë²âÊÔ" - 0 Error(s), 0 Warning(s).

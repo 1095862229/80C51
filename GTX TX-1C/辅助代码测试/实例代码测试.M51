@@ -1,0 +1,215 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        04/26/2017  17:22:13  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+F:\KEIL\C51\BIN\BL51.EXE STARTUP.obj, 计数器.obj TO 实例代码测试 RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  计数器.obj (计数器)
+  F:\KEIL\C51\LIB\C51S.LIB (?C?UIDIV)
+
+
+LINK MAP OF MODULE:  实例代码测试 (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0001H     UNIT         _DATA_GROUP_
+            IDATA   0009H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0055H     UNIT         ?C?LIB_CODE
+            CODE    0058H     0040H     UNIT         ?PR?MAIN?计数器
+            CODE    0098H     002BH     UNIT         ?PR?_DISPLAY?计数器
+            CODE    00C3H     0015H     UNIT         ?PR?READ?计数器
+            CODE    00D8H     0014H     UNIT         ?CO?计数器
+            CODE    00ECH     000EH     UNIT         ?PR?_DELAY?计数器
+            CODE    00FAH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   实例代码测试 (?C_STARTUP)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?计数器
+
+?PR?MAIN?计数器                0008H    0001H
+  +--> ?PR?READ?计数器
+  +--> ?PR?_DISPLAY?计数器
+
+?PR?_DISPLAY?计数器            -----    -----
+  +--> ?CO?计数器
+  +--> ?PR?_DELAY?计数器
+
+
+
+SYMBOL TABLE OF MODULE:  实例代码测试 (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/26/2017  17:22:13  PAGE 2
+
+
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:00FAH         SEGMENT       ?C_C51STARTUP
+  I:0009H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:00FDH         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:00FAH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:00FAH         LINE#         133
+  C:00FCH         LINE#         134
+  C:00FDH         LINE#         135
+  C:00FEH         LINE#         136
+  C:0100H         LINE#         185
+  C:0103H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        计数器
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:00D8H         PUBLIC        table
+  D:00A8H         PUBLIC        IE
+  C:00ECH         PUBLIC        _delay
+  D:00B8H         PUBLIC        IP
+  C:00C3H         PUBLIC        read
+  C:0058H         PUBLIC        main
+  B:00A0H.6       PUBLIC        dula
+  B:00A0H.7       PUBLIC        wela
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  B:0088H.4       PUBLIC        TR0
+  D:00C8H         PUBLIC        T2CON
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/26/2017  17:22:13  PAGE 3
+
+
+  C:0098H         PUBLIC        _display
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY
+  D:0007H         SYMBOL        z
+  -------         DO            
+  D:0007H         SYMBOL        x
+  D:0006H         SYMBOL        y
+  -------         ENDDO         
+  C:00ECH         LINE#         13
+  C:00ECH         LINE#         14
+  C:00ECH         LINE#         16
+  C:00F2H         LINE#         17
+  C:00F9H         LINE#         18
+  -------         ENDPROC       _DELAY
+  -------         PROC          _DISPLAY
+  D:0007H         SYMBOL        shi
+  D:0005H         SYMBOL        ge
+  C:0098H         LINE#         20
+  C:0098H         LINE#         21
+  C:0098H         LINE#         30
+  C:009FH         LINE#         31
+  C:00A1H         LINE#         32
+  C:00A3H         LINE#         33
+  C:00A6H         LINE#         34
+  C:00A8H         LINE#         35
+  C:00AAH         LINE#         36
+  C:00AFH         LINE#         38
+  C:00B3H         LINE#         39
+  C:00B5H         LINE#         40
+  C:00B7H         LINE#         41
+  C:00BAH         LINE#         42
+  C:00BCH         LINE#         43
+  C:00BEH         LINE#         44
+  -------         ENDPROC       _DISPLAY
+  -------         PROC          READ
+  -------         DO            
+  D:0005H         SYMBOL        t1
+  D:0007H         SYMBOL        th1
+  D:0006H         SYMBOL        th2
+  D:0006H         SYMBOL        val
+  -------         ENDDO         
+  C:00C3H         LINE#         47
+  C:00C3H         LINE#         48
+  C:00C3H         LINE#         51
+  C:00C3H         LINE#         52
+  C:00C3H         LINE#         53
+  C:00C5H         LINE#         54
+  C:00C7H         LINE#         55
+  C:00C9H         LINE#         56
+  C:00CDH         LINE#         57
+  C:00CDH         LINE#         59
+  C:00D7H         LINE#         60
+  C:00D7H         LINE#         61
+  -------         ENDPROC       READ
+  -------         PROC          MAIN
+  -------         DO            
+  D:0008H         SYMBOL        a
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/26/2017  17:22:13  PAGE 4
+
+
+  D:0004H         SYMBOL        b
+  D:0002H         SYMBOL        num
+  -------         ENDDO         
+  C:0058H         LINE#         63
+  C:0058H         LINE#         64
+  C:0058H         LINE#         67
+  C:005BH         LINE#         68
+  C:005EH         LINE#         69
+  C:0060H         LINE#         70
+  C:0062H         LINE#         71
+  C:0062H         LINE#         72
+  C:0062H         LINE#         73
+  C:0069H         LINE#         74
+  C:0072H         LINE#         75
+  C:0072H         LINE#         76
+  C:0075H         LINE#         77
+  C:0077H         LINE#         78
+  C:0079H         LINE#         79
+  C:0079H         LINE#         80
+  C:0086H         LINE#         81
+  C:0091H         LINE#         82
+  C:0096H         LINE#         83
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        计数器
+
+  -------         MODULE        ?C?UIDIV
+  C:0003H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+Program Size: data=10.0 xdata=0 code=262
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

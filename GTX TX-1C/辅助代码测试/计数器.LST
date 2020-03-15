@@ -1,0 +1,23 @@
+C51 COMPILER V9.01   计数器                                                                04/26/2017 17:22:13 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE 计数器
+OBJECT MODULE PLACED IN 计数器.OBJ
+COMPILER INVOKED BY: F:\Keil\C51\BIN\C51.EXE 计数器.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    142    ----
+   CONSTANT SIZE    =     20    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

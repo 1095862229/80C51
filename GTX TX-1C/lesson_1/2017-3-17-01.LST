@@ -1,0 +1,113 @@
+C51 COMPILER V9.01   2017_3_17_01                                                          03/17/2017 21:31:15 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE 2017_3_17_01
+OBJECT MODULE PLACED IN 2017-3-17-01.OBJ
+COMPILER INVOKED BY: F:\Keil\C51\BIN\C51.EXE 2017-3-17-01.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg52.h>
+   2          #include<intrins.h>
+   3          sbit d1=P1^0;   
+   4          sbit d2=P1^1;
+   5          sbit d3=P1^2;
+   6          sbit d4=P1^3;
+   7          sbit d5=P1^4;
+   8          sbit d6=P1^5;
+   9          sbit d7=P1^6;
+  10          sbit d8=P1^7;
+  11          unsigned int a=200;
+  12          unsigned int b=2;
+  13          unsigned char temp;
+  14          void zuoyi();
+  15          void shuxun();
+  16          void yanshi();
+  17          void main()
+  18          {
+  19   1              while(1)
+  20   1              {
+  21   2                      unsigned int i=8;
+  22   2                      temp=0xfe;
+  23   2                      while(i--)
+  24   2                      zuoyi();
+  25   2                      i=8;
+  26   2                      P1=0xff;
+  27   2              shuxun();
+  28   2      
+  29   2      
+  30   2      
+  31   2      
+  32   2              }
+  33   1      }       
+  34          
+  35          void yanshi()
+  36          {
+  37   1           for(;b-->0;)
+  38   1                      while(a--);
+  39   1                 a=200;
+  40   1                        b=2;
+  41   1      }       
+  42          
+  43          
+  44          void zuoyi()
+  45          {
+  46   1      
+  47   1                      P1=temp;
+  48   1                      yanshi();
+  49   1                      temp=_crol_(temp,1);
+  50   1      
+  51   1      }
+  52          
+  53          void shuxun()
+  54          {
+  55   1                      d1=0;
+C51 COMPILER V9.01   2017_3_17_01                                                          03/17/2017 21:31:15 PAGE 2   
+
+  56   1                      yanshi();
+  57   1                      d1=1;
+  58   1                      yanshi();
+  59   1                      d1=0;
+  60   1                      d2=0;
+  61   1                      yanshi();
+  62   1                      d1=1;d2=1;
+  63   1                      yanshi();
+  64   1                      d1=0;d2=0;d3=0;
+  65   1                      yanshi();
+  66   1                      d1=1;d2=1;d3=1;
+  67   1                      yanshi();
+  68   1                      d1=0;d2=0;d3=0;d4=0;
+  69   1                      yanshi();
+  70   1                      d1=1;d2=1;d3=1;d4=1;
+  71   1                      yanshi();
+  72   1                      d1=0;d2=0;d3=0;d4=0;d5=0;
+  73   1                      yanshi();
+  74   1                      d1=1;d2=1;d3=1;d4=1;d5=1;
+  75   1                      yanshi();
+  76   1                      d1=0;d2=0;d3=0;d4=0;d5=0;d6=0;
+  77   1                      yanshi();
+  78   1                      d1=1;d2=1;d3=1;d4=1;d5=1;d6=1;
+  79   1                      yanshi();
+  80   1                      d1=0;d2=0;d3=0;d4=0;d5=0;d6=0;d7=0;
+  81   1                      yanshi();
+  82   1                      d1=1;d2=1;d3=1;d4=1;d5=1;d6=1;d7=1;
+  83   1                      yanshi();
+  84   1                      d1=0;d2=0;d3=0;d4=0;d5=0;d6=0;d7=0;d8=0;
+  85   1                      yanshi();
+  86   1                      d1=1;d2=1;d3=1;d4=1;d5=1;d6=1;d7=1;d8=1;
+  87   1                      yanshi();
+  88   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    299    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      5       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

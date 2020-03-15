@@ -1,0 +1,92 @@
+C51 COMPILER V9.01   æÿ’_º¸≈Ã£®1£©                                                         04/17/2017 13:28:21 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE æÿ’_º¸≈Ã£®1£©
+OBJECT MODULE PLACED IN æÿ’Ûº¸≈Ã£®1£©.OBJ
+COMPILER INVOKED BY: F:\Keil\C51\BIN\C51.EXE æÿ’Ûº¸≈Ã£®1£©.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg52.h>
+   2          #define uchar unsigned char
+   3          sbit dula=P2^6;
+   4          sbit wela=P2^7;
+   5          code P1_scan[]={0x7F,0xBF,0xDF,0xEF};
+   6          code key_temp[]={0xEE,0xED,0xEB,0xE7,0xDE,0xDD,0xDB,0xD7,
+   7                                          0xBE,0xBD,0xBB,0xB7,0x7E,0x7D,0x7B,0x77};
+   8          code uchar seven_seg[10]={0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,
+   9                                                                  0x80,0x90};
+  10          void delay(uchar x)
+  11          {
+  12   1              while(x) x--;
+  13   1      }
+  14          
+  15          uchar key_scan(void)
+  16          {
+  17   1              uchar i,j;
+  18   1              for(i=0;i<4;i++)
+  19   1              {
+  20   2                      P1=P1_scan[i];
+  21   2                      if(P1!=P1_scan[i])
+  22   2                      {
+  23   3                              delay(200);
+  24   3                              if(P1!=P1_scan[i])
+  25   3                              {
+  26   4                                      for(j=0;j<16;j++)
+  27   4                                      {
+  28   5                                              if(P1==key_temp[j])
+  29   5                                                      return j;
+  30   5      
+  31   5                                      }
+  32   4                              }
+  33   3                      }
+  34   2              }
+  35   1              return(88);
+  36   1      }
+  37          
+  38          void display(uchar i)
+  39          {
+  40   1              dula=1;
+  41   1              P0=seven_seg[i%10];
+  42   1              dula=0;
+  43   1              P0=0xFF;
+  44   1              wela=1;
+  45   1              P0=0xfe;
+  46   1              wela=0;
+  47   1              delay(300);
+  48   1              dula=1;
+  49   1              P0=seven_seg[i/10];
+  50   1              dula=0;
+  51   1              P0=0xFF;
+  52   1              wela=1;
+  53   1              P0=0xfd;
+  54   1              wela=0;
+  55   1              delay(300);
+C51 COMPILER V9.01   æÿ’_º¸≈Ã£®1£©                                                         04/17/2017 13:28:21 PAGE 2   
+
+  56   1              P0=0xFF;
+  57   1      }
+  58          
+  59          void main(void)
+  60          {
+  61   1              uchar i;
+  62   1              while(1)
+  63   1              {
+  64   2                      i=key_scan();
+  65   2                      display(i);
+  66   2              }
+  67   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    186    ----
+   CONSTANT SIZE    =     50    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"加强版流水灯.obj" 
+TO "lesson_2" 
+RAMSIZE(256) 

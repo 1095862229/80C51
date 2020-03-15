@@ -1,0 +1,143 @@
+C51 COMPILER V9.01   5_1                                                                   04/24/2017 18:20:28 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE 5_1
+OBJECT MODULE PLACED IN 5.1.OBJ
+COMPILER INVOKED BY: F:\Keil\C51\BIN\C51.EXE 5.1.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          //数码管前三位显示一个跑表，从000到999之间以1%秒速度运行，***//
+   2          /*当按下一个独立键盘时跑表停止，松开手后跑表继续运行。*******/ 
+   3          /*(用定时器设计表)******************************************/
+   4          #include<reg52.h>
+   5          #define uchar unsigned char
+   6          #define uint unsigned int
+   7          sbit dula=P2^6;
+   8          sbit wela=P2^7;
+   9          sbit key=P3^4;
+  10          uchar code table[]={
+  11          0x3f,0x06,0x5b,0x4f,
+  12          0x66,0x6d,0x7d,0x07,
+  13          0x7f,0x6f,0x77,0x7c,
+  14          0x39,0x5e,0x79,0x71};
+  15          uchar code tablewe[]={
+  16          0xfe,0xfd,0xfb,0xf7,0xef,0xdf};
+  17          uchar ge,shi,bai;
+  18          uint tt0;
+  19          void delay(uchar z)
+  20          {
+  21   1              uchar x,y;
+  22   1              for(x=z;x>0;x--)
+  23   1                      for(y=110;y>0;y--);
+  24   1      }
+  25          
+  26          void display(uchar bai,uchar shi,uchar ge)
+  27          {
+  28   1              P0=table[ge];
+  29   1              dula=1;
+  30   1              dula=0;
+  31   1              P0=0xfb;
+  32   1              wela=1;
+  33   1              wela=0;
+  34   1              delay(1);
+  35   1              
+  36   1              P0=table[shi];
+  37   1              dula=1;
+  38   1              dula=0;
+  39   1              P0=0xfd;
+  40   1              wela=1;
+  41   1              wela=0;
+  42   1              delay(1);
+  43   1              
+  44   1              P0=table[bai];
+  45   1              dula=1;
+  46   1              dula=0;
+  47   1              P0=0xfe;
+  48   1              wela=1;
+  49   1              wela=0;
+  50   1              delay(1);       
+  51   1      }
+  52          
+  53          
+  54          
+  55          void timer0() interrupt 1
+C51 COMPILER V9.01   5_1                                                                   04/24/2017 18:20:28 PAGE 2   
+
+  56          {
+  57   1              TH0=(65536-10000)/256;
+  58   1              TL0=(65536-10000)%256;
+  59   1              tt0++;
+  60   1              if(tt0==1000)
+  61   1              {
+  62   2                      tt0=0; 
+  63   2                      ge++;
+  64   2                      if(ge==10)
+  65   2                      {
+  66   3                              ge=0;
+  67   3                              shi++;
+  68   3                              if(shi==10)
+  69   3                              {
+  70   4                                      shi=0;
+  71   4                                      bai++;
+  72   4                                      if(bai==10)
+  73   4                                      {
+  74   5                                              ge=0;
+  75   5                                              shi=0;
+  76   5                                              bai=0;
+  77   5                                      }
+  78   4                              } 
+  79   3                      }           
+  80   2              }                                                
+  81   1      
+  82   1      
+  83   1      }                                
+  84          
+  85          
+  86          
+  87          void init()
+  88          {
+  89   1              ge=0;shi=0;bai=0;tt0=0;
+  90   1              TMOD=0x01;
+  91   1              TH0=(65536-10000)/256;
+  92   1              TL0=(65536-10000)%256;
+  93   1              EA=1;
+  94   1              ET0=1;
+  95   1              TR0=1;
+  96   1      }
+  97          
+  98          void main()
+  99          {
+ 100   1              init();
+ 101   1              while(1)
+ 102   1              {
+ 103   2                      display(bai,shi,ge);
+ 104   2                      if(key==0)
+ 105   2                      {
+ 106   3                              delay(5);
+ 107   3                              if(key==0)
+ 108   3                              {        
+ 109   4                                              TR0=0;
+ 110   4                                              while(!key)
+ 111   4                                              display(bai,shi,ge);                    
+ 112   4                              }
+ 113   3                      }
+ 114   2                      TR0=1;
+ 115   2              }
+ 116   1      }
+
+C51 COMPILER V9.01   5_1                                                                   04/24/2017 18:20:28 PAGE 3   
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    210    ----
+   CONSTANT SIZE    =     22    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      5    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
